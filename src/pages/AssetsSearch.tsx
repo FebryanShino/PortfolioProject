@@ -31,41 +31,9 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { DataUtil } from '../utils/DataUtil';
+import { ASSETS_DATA, searchOptions } from '../app.constants';
 
 const { Title, Text } = Typography;
-
-const renderItem = (title: string, count: number) => ({
-  value: title,
-  label: (
-    <Flex align="center" justify="space-between">
-      {title}
-      <span>
-        <UserOutlined /> {count}
-      </span>
-    </Flex>
-  ),
-});
-
-const options = [
-  {
-    label: 'hello',
-    options: [
-      renderItem('AntDesign UI', 10600),
-      renderItem('AntDesign UI', 10600),
-    ],
-  },
-  {
-    label: '<Title title="Solutions" />',
-    options: [
-      renderItem('AntDesign UI FAQ', 60100),
-      renderItem('AntDesign FAQ', 30010),
-    ],
-  },
-  {
-    label: '<Title title="Articles" />',
-    options: [renderItem('AntDesign design language', 100000)],
-  },
-];
 
 export default function AssetsSearch() {
   const navigate = useNavigate();
@@ -73,26 +41,35 @@ export default function AssetsSearch() {
   const [isAscending, setIsAscending] = useState(true);
   const [currentAssetsPage, setCurrentAssetsPage] = useState<number>(1);
   const [assets, setAssets] = useState<any[]>([]);
+  const [pageCount, setPageCount] = useState<number>(0);
   const [paginatedData, setPaginatedData] = useState<any[]>([]);
   const searchParamsId = searchParams.get('id');
 
   useEffect(() => {
-    const data: any[] = [];
-    Array(65)
-      .fill('')
-      .forEach((item: string, index: number) => {
-        data.push(index + 1);
-      });
-    setAssets(data);
+    setAssets(ASSETS_DATA);
   }, []);
+
   useEffect(() => {
+    if (!searchParams.get('page')) {
+      setSearchParams({
+        ...Object.fromEntries(searchParams),
+        page: '1',
+        sortDirection: 'ASC',
+      });
+    }
+    const searchedData = DataUtil.searchData(
+      assets,
+      searchParams.get('search') ? (searchParams.get('search') as string) : '',
+    );
+
     const queryIsAscending = searchParams.get('sortDirection') == 'ASC';
     setIsAscending(queryIsAscending);
     const currentAssets = DataUtil.sortData(
-      assets,
+      searchedData,
       queryIsAscending ? 'ASC' : 'DESC',
     );
-    console.log(currentAssets);
+
+    setPageCount(Math.ceil(currentAssets.length / 20));
 
     setPaginatedData(
       DataUtil.paginate(
@@ -135,7 +112,7 @@ export default function AssetsSearch() {
             popupMatchSelectWidth={500}
             style={{ width: 500 }}
             className="self-start"
-            options={options}
+            options={searchOptions}
             size="large"
           >
             <Input.Search
@@ -208,7 +185,7 @@ export default function AssetsSearch() {
                   avatar={
                     <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
                   }
-                  title={'Card No.' + item}
+                  title={item.name}
                   description="This is the description"
                 />
               </Card>
@@ -233,8 +210,7 @@ export default function AssetsSearch() {
           </Button>
 
           <Text>
-            Page {searchParams.get('page')} out of{' '}
-            {Math.ceil(assets.length / 20)}
+            Page {searchParams.get('page')} out of {pageCount}
           </Text>
           <Button
             onClick={() =>
@@ -245,10 +221,7 @@ export default function AssetsSearch() {
                 ).toString(),
               })
             }
-            disabled={
-              Number(searchParams.get('page') as string) ===
-              Math.ceil(assets.length / 20)
-            }
+            disabled={Number(searchParams.get('page') as string) === pageCount}
           >
             <RightOutlined />
           </Button>
