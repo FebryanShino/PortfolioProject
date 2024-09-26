@@ -24,13 +24,13 @@ import {
 import React, { useEffect, useState } from 'react';
 import ContentWrapper from '../component/ContentWrapper';
 import ResponsiveGridWrapper from '../component/ResponsiveGridWrapper';
-import { paginate } from '../utils/DataUtil';
 import Meta from 'antd/es/card/Meta';
 import {
   createSearchParams,
   useNavigate,
   useSearchParams,
 } from 'react-router-dom';
+import { DataUtil } from '../utils/DataUtil';
 
 const { Title, Text } = Typography;
 
@@ -70,9 +70,10 @@ const options = [
 export default function AssetsSearch() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isAscending, setIsAscending] = useState(false);
+  const [isAscending, setIsAscending] = useState(true);
   const [currentAssetsPage, setCurrentAssetsPage] = useState<number>(1);
   const [assets, setAssets] = useState<any[]>([]);
+  const [paginatedData, setPaginatedData] = useState<any[]>([]);
   const searchParamsId = searchParams.get('id');
 
   useEffect(() => {
@@ -82,17 +83,25 @@ export default function AssetsSearch() {
       .forEach((item: string, index: number) => {
         data.push(index + 1);
       });
-
+    setAssets(data);
+  }, []);
+  useEffect(() => {
     const queryIsAscending = searchParams.get('sortDirection') == 'ASC';
     setIsAscending(queryIsAscending);
-    const currentAssets = data;
-    if (queryIsAscending) {
-      currentAssets.sort((a, b) => a - b);
-    } else {
-      currentAssets.sort((a, b) => b - a);
-    }
-    setAssets(currentAssets);
-  }, [searchParamsId]);
+    const currentAssets = DataUtil.sortData(
+      assets,
+      queryIsAscending ? 'ASC' : 'DESC',
+    );
+    console.log(currentAssets);
+
+    setPaginatedData(
+      DataUtil.paginate(
+        currentAssets,
+        20,
+        parseInt(searchParams.get('page') as string),
+      ),
+    );
+  }, [assets, searchParams]);
 
   return (
     <div>
@@ -131,12 +140,9 @@ export default function AssetsSearch() {
           >
             <Input.Search
               onSearch={(value: string) =>
-                navigate({
-                  pathname: '',
-                  search: createSearchParams({
-                    ...Object.fromEntries(searchParams),
-                    search: value,
-                  }).toString(),
+                setSearchParams({
+                  ...Object.fromEntries(searchParams),
+                  search: value,
                 })
               }
               size="large"
@@ -183,50 +189,66 @@ export default function AssetsSearch() {
         </Flex>
 
         <ResponsiveGridWrapper minSize="18rem">
-          {assets ? (
-            paginate(assets, 20, currentAssetsPage).map(
-              (item: any, index: number) => (
-                <Card
-                  cover={
-                    <img
-                      alt="example"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                    />
-                  }
-                  actions={[
-                    <SettingOutlined key="setting" />,
-                    <EditOutlined key="edit" />,
-                    <EllipsisOutlined key="ellipsis" />,
-                  ]}
-                >
-                  <Meta
-                    avatar={
-                      <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
-                    }
-                    title={'Card No.' + item}
-                    description="This is the description"
+          {paginatedData ? (
+            paginatedData.map((item: any, index: number) => (
+              <Card
+                cover={
+                  <img
+                    alt="example"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                   />
-                </Card>
-              ),
-            )
+                }
+                actions={[
+                  <SettingOutlined key="setting" />,
+                  <EditOutlined key="edit" />,
+                  <EllipsisOutlined key="ellipsis" />,
+                ]}
+              >
+                <Meta
+                  avatar={
+                    <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
+                  }
+                  title={'Card No.' + item}
+                  description="This is the description"
+                />
+              </Card>
+            ))
           ) : (
             <Empty />
           )}
         </ResponsiveGridWrapper>
         <Flex justify="center" align="center" gap={10}>
           <Button
-            onClick={() => setCurrentAssetsPage(currentAssetsPage - 1)}
-            disabled={currentAssetsPage === 1}
+            onClick={() =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams),
+                page: (
+                  Number(searchParams.get('page') as string) - 1
+                ).toString(),
+              })
+            }
+            disabled={Number(searchParams.get('page') as string) === 1}
           >
             <LeftOutlined />
           </Button>
 
           <Text>
-            Page {currentAssetsPage} out of {Math.ceil(assets.length / 20)}
+            Page {searchParams.get('page')} out of{' '}
+            {Math.ceil(assets.length / 20)}
           </Text>
           <Button
-            onClick={() => setCurrentAssetsPage(currentAssetsPage + 1)}
-            disabled={currentAssetsPage === Math.ceil(assets.length / 20)}
+            onClick={() =>
+              setSearchParams({
+                ...Object.fromEntries(searchParams),
+                page: (
+                  Number(searchParams.get('page') as string) + 1
+                ).toString(),
+              })
+            }
+            disabled={
+              Number(searchParams.get('page') as string) ===
+              Math.ceil(assets.length / 20)
+            }
           >
             <RightOutlined />
           </Button>
