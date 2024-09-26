@@ -1,14 +1,20 @@
 type SortDirectionType = 'ASC' | 'DESC';
 
 export class DataUtil {
+  static searchData(data: any[], keywords: string): any[] {
+    return data.filter((item: any) =>
+      item.name.toLowerCase().includes(keywords.toLowerCase()),
+    );
+  }
+
   static sortData(data: any[], sortDirection: SortDirectionType): any[] {
     const isAscending = sortDirection === 'ASC';
     const currentData = data;
 
     if (isAscending) {
-      currentData.sort((a, b) => a - b);
+      currentData.sort((a, b) => a.name.localeCompare(b.name));
     } else {
-      currentData.sort((a, b) => b - a);
+      currentData.sort((a, b) => b.name.localeCompare(a.name));
     }
     return currentData;
   }
