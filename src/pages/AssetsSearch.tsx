@@ -86,20 +86,16 @@ export default function AssetsSearch() {
         <Breadcrumb
           items={[
             {
-              href: '',
+              href: '/',
               title: <HomeOutlined />,
             },
             {
-              href: '',
               title: (
                 <>
                   <UserOutlined />
-                  <span>Application List</span>
+                  <span>Assets List</span>
                 </>
               ),
-            },
-            {
-              title: 'Application',
             },
           ]}
         />
@@ -120,6 +116,7 @@ export default function AssetsSearch() {
                 setSearchParams({
                   ...Object.fromEntries(searchParams),
                   search: value,
+                  page: '1',
                 })
               }
               size="large"
