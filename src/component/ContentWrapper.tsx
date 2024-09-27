@@ -1,9 +1,14 @@
 import React, { ReactNode } from 'react';
 
-interface ContentWrapperProps {
-  children: ReactNode;
-}
+interface ContentWrapperProps extends React.ComponentPropsWithRef<'div'> {}
 
-export default function ContentWrapper({ children }: ContentWrapperProps) {
-  return <div className="mx-20 my-32">{children}</div>;
+export default function ContentWrapper({
+  children,
+  ...props
+}: ContentWrapperProps) {
+  return (
+    <div className="mx-20 my-32" {...props}>
+      {children}
+    </div>
+  );
 }
