@@ -8,7 +8,7 @@ import Footer from './component/Footer';
 import CreationPage from './pages/CreationPage';
 import BlenderCreationPage from './pages/BlenderCreationPage';
 import AboutMePage from './pages/AboutMePage';
-import AssetsSearch from './pages/AssetsSearch';
+import AssetsSearch from './pages/blender-asset/AssetsSearch';
 import AssetDetail from './pages/blender-asset/AssetDetail';
 
 function App() {
