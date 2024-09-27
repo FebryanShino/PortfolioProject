@@ -1,6 +1,6 @@
 import React from 'react';
 import Hero from '../component/Hero';
-import { Avatar, Card, Carousel, Image } from 'antd';
+import { Avatar, Card, Carousel, Image, Typography } from 'antd';
 import {
   EditOutlined,
   EllipsisOutlined,
@@ -9,6 +9,9 @@ import {
 import Meta from 'antd/es/card/Meta';
 import ResponsiveGridWrapper from '../component/ResponsiveGridWrapper';
 import ContentWrapper from '../component/ContentWrapper';
+import BannerCard from '../component/BannerCard';
+
+const { Title } = Typography;
 
 export default function Homepage() {
   return (
@@ -20,8 +23,10 @@ export default function Homepage() {
             <img src="/hero.png" />
           ))}
         </Carousel>
+        <BannerCard href="/creation" title="Creation" />
+        <Title>Latest Posts</Title>
         <ResponsiveGridWrapper minSize="20rem">
-          {['', '', '', '', ''].map((item: string) => (
+          {['', '', '', ''].map((item: string) => (
             <Card
               loading={false}
               cover={<img alt="example" src="/hero.png" />}
