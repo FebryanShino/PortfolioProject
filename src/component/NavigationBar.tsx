@@ -1,9 +1,11 @@
 import { MoonOutlined } from '@ant-design/icons';
 import { useGSAP } from '@gsap/react';
-import { Button, Flex, Space } from 'antd';
+import { Button, Flex, Space, Typography } from 'antd';
 import gsap from 'gsap';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+const { Title } = Typography;
 
 export default function NavigationBar() {
   const container = useRef(null);
@@ -47,7 +49,13 @@ export default function NavigationBar() {
         ref={container}
         className="bg-white absolute w-full h-full ml-[-70px] z-[-1]"
       ></div>
-      Aqutan
+      <Flex
+        align="flex-end"
+        className="cursor-pointer"
+        onClick={() => navigate('/')}
+      >
+        <Title level={4}>FebryanS</Title>
+      </Flex>
       <Space>
         <Button type="text" ghost onClick={() => navigate('/creation')}>
           Creation
