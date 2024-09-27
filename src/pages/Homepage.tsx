@@ -10,6 +10,7 @@ import Meta from 'antd/es/card/Meta';
 import ResponsiveGridWrapper from '../component/ResponsiveGridWrapper';
 import ContentWrapper from '../component/ContentWrapper';
 import BannerCard from '../component/BannerCard';
+import CardsPreviewContainer from '../component/CardsPreviewContainer';
 
 const { Title } = Typography;
 
@@ -24,26 +25,27 @@ export default function Homepage() {
           ))}
         </Carousel>
         <BannerCard href="/creation" title="Creation" />
-        <Title>Latest Posts</Title>
-        <ResponsiveGridWrapper minSize="20rem">
-          {['', '', '', ''].map((item: string) => (
-            <Card
-              loading={false}
-              cover={<img alt="example" src="/hero.png" />}
-              actions={[
-                <SettingOutlined key="setting" />,
-                <EditOutlined key="edit" />,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-            >
-              <Meta
-                avatar={<Avatar src="/hero.png" />}
-                title="Card title"
-                description="This is the description"
-              />
-            </Card>
-          ))}
-        </ResponsiveGridWrapper>
+        <CardsPreviewContainer style={{ marginTop: 100 }}>
+          <ResponsiveGridWrapper minSize="18rem">
+            {['', '', '', ''].map((item: string) => (
+              <Card
+                loading={false}
+                cover={<img alt="example" src="/hero.png" />}
+                actions={[
+                  <SettingOutlined key="setting" />,
+                  <EditOutlined key="edit" />,
+                  <EllipsisOutlined key="ellipsis" />,
+                ]}
+              >
+                <Meta
+                  avatar={<Avatar src="/hero.png" />}
+                  title="Card title"
+                  description="This is the description"
+                />
+              </Card>
+            ))}
+          </ResponsiveGridWrapper>
+        </CardsPreviewContainer>
       </ContentWrapper>
     </div>
   );
