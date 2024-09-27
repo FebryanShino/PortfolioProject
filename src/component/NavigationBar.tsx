@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 export default function NavigationBar() {
   const container = useRef(null);
   const navigate = useNavigate();
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useGSAP(
     () => {
