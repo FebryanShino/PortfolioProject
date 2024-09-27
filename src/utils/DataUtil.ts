@@ -1,4 +1,4 @@
-type SortDirectionType = 'ASC' | 'DESC';
+export type SortDirectionType = 'ASC' | 'DESC';
 
 export class DataUtil {
   static searchData(data: any[], keywords: string): any[] {
