@@ -1,20 +1,7 @@
 import React from 'react';
-import {
-  generatePath,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import ContentWrapper from '../../component/ContentWrapper';
-import {
-  Breadcrumb,
-  Button,
-  Divider,
-  Flex,
-  Image,
-  Space,
-  Typography,
-} from 'antd';
+import { Breadcrumb, Button, Divider, Flex, Space, Typography } from 'antd';
 import {
   DownloadOutlined,
   HomeOutlined,
