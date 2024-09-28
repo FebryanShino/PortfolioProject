@@ -11,22 +11,72 @@ import AboutMePage from './pages/AboutMePage';
 import AssetsSearch from './pages/blender-asset/AssetsSearch';
 import AssetDetail from './pages/blender-asset/AssetDetail';
 import RenderList from './pages/blender-render/RenderList';
+import MainLayout from './MainLayout';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
     <div className="App">
-      <NavigationBar />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/creation" element={<CreationPage />} />
-        <Route path="/about" element={<AboutMePage />} />
-        <Route path="/creation/blender" element={<BlenderCreationPage />} />
-        <Route path="/creation/blender/assets" element={<AssetsSearch />} />
-        <Route path="/creation/blender/assets/:id" element={<AssetDetail />} />
+        <Route
+          path="/"
+          element={
+            <MainLayout>
+              <Homepage />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/creation"
+          element={
+            <MainLayout>
+              <CreationPage />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <MainLayout>
+              <AboutMePage />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/creation/blender"
+          element={
+            <MainLayout>
+              <BlenderCreationPage />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/creation/blender/assets"
+          element={
+            <MainLayout>
+              <AssetsSearch />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/creation/blender/assets/:id"
+          element={
+            <MainLayout>
+              <AssetDetail />
+            </MainLayout>
+          }
+        />
 
-        <Route path="/creation/blender/render" element={<RenderList />} />
+        <Route
+          path="/creation/blender/render"
+          element={
+            <MainLayout>
+              <RenderList />
+            </MainLayout>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
     </div>
   );
 }
