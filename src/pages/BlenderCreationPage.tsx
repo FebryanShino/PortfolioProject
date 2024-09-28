@@ -54,9 +54,8 @@ export default function BlenderCreationPage() {
       <ContentWrapper>
         <Title level={1}>Browse</Title>
         <Flex justify="center" vertical gap={5} className="content mb-20">
-          {['3D Assets', '3D Renders'].map((item: string) => (
-            <BannerCard title={item} href="assets" key={item} />
-          ))}
+          <BannerCard title="3D Assets" href="assets" />
+          <BannerCard title="3D Renders" href="render" />
         </Flex>
       </ContentWrapper>
     </div>
