@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex, Typography } from 'antd';
 import ContentWrapper from '../component/ContentWrapper';
 import { useNavigate } from 'react-router-dom';
+import CreationCategory from '../component/CreationCategory';
 
 const { Title } = Typography;
 
@@ -10,20 +11,22 @@ export default function CreationPage() {
   return (
     <ContentWrapper>
       <Title level={1}>Creation</Title>
-      <Flex justify="center" gap={4}>
-        <div
-          style={{ backgroundImage: 'url(/hero.png)' }}
-          className="bg-cover bg-center w-60 h-60 cursor-pointer"
-          onClick={() => navigate('/creation/blender')}
-        ></div>
-        <div
-          style={{ backgroundImage: 'url(/hero.png)' }}
-          className=" bg-cover bg-center w-60 h-60"
-        ></div>
-        <div
-          style={{ backgroundImage: 'url(/hero.png)' }}
-          className=" bg-cover bg-center w-60 h-60"
-        ></div>
+      <Flex justify="center" gap={4} wrap>
+        <CreationCategory
+          title="3D arts"
+          animationStartPosition="LEFT"
+          href="blender"
+        />
+        <CreationCategory
+          title="Illustration"
+          animationStartPosition="CENTER"
+          href="illustration"
+        />
+        <CreationCategory
+          title="Programming"
+          animationStartPosition="RIGHT"
+          href="programming"
+        />
       </Flex>
     </ContentWrapper>
   );
