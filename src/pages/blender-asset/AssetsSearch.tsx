@@ -43,20 +43,12 @@ export default function AssetsSearch() {
   const [assets, setAssets] = useState<any[]>([]);
   const [pageCount, setPageCount] = useState<number>(0);
   const [paginatedData, setPaginatedData] = useState<any[]>([]);
-  const searchParamsId = searchParams.get('id');
 
   useEffect(() => {
     setAssets(ASSETS_DATA);
   }, []);
 
   useEffect(() => {
-    // if (!searchParams.get('page')) {
-    //   setSearchParams({
-    //     ...Object.fromEntries(searchParams),
-    //     page: '1',
-    //     sortDirection: 'ASC',
-    //   });
-    // }
     const searchedData = DataUtil.searchData(
       assets,
       searchParams.get('search') ? (searchParams.get('search') as string) : '',
@@ -132,7 +124,7 @@ export default function AssetsSearch() {
       <Flex align="center">
         Sort By
         <Select
-          defaultValue="lucy"
+          defaultValue="Name"
           variant="borderless"
           style={{ width: 100 }}
           className="text-left"
@@ -143,10 +135,8 @@ export default function AssetsSearch() {
             })
           }
           options={[
-            { value: 'jack', label: 'Jack' },
-            { value: 'lucy', label: 'Lucy' },
-            { value: 'Yiminghe', label: 'yiminghe' },
-            { value: 'disabled', label: 'Disabled', disabled: true },
+            { value: 'Name', label: 'Name' },
+            { value: 'Date', label: 'Date' },
           ]}
         />
         <Button
