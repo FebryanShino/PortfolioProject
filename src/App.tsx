@@ -13,6 +13,7 @@ import AssetDetail from './pages/blender-asset/AssetDetail';
 import RenderList from './pages/blender-render/RenderList';
 import MainLayout from './MainLayout';
 import NotFound from './pages/NotFound';
+import ProgrammingLandingPage from './pages/programming/ProgrammingLandingPage';
 
 function App() {
   return (
@@ -72,6 +73,15 @@ function App() {
           element={
             <MainLayout>
               <RenderList />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/creation/programming"
+          element={
+            <MainLayout>
+              <ProgrammingLandingPage />
             </MainLayout>
           }
         />
