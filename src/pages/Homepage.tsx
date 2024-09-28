@@ -1,6 +1,6 @@
 import React from 'react';
 import Hero from '../component/Hero';
-import { Avatar, Card, Carousel, Image, Typography } from 'antd';
+import { Avatar, Card, Carousel, Descriptions, Image, Typography } from 'antd';
 import {
   EditOutlined,
   EllipsisOutlined,
@@ -25,27 +25,16 @@ export default function Homepage() {
           ))}
         </Carousel>
         <BannerCard href="/creation" title="Creation" />
-        <CardsPreviewContainer style={{ marginTop: 100 }}>
-          <ResponsiveGridWrapper minSize="18rem">
-            {['', '', '', ''].map((item: string) => (
-              <Card
-                loading={false}
-                cover={<img alt="example" src="/hero.png" />}
-                actions={[
-                  <SettingOutlined key="setting" />,
-                  <EditOutlined key="edit" />,
-                  <EllipsisOutlined key="ellipsis" />,
-                ]}
-              >
-                <Meta
-                  avatar={<Avatar src="/hero.png" />}
-                  title="Card title"
-                  description="This is the description"
-                />
-              </Card>
-            ))}
-          </ResponsiveGridWrapper>
-        </CardsPreviewContainer>
+        <CardsPreviewContainer
+          style={{ marginTop: 100 }}
+          items={Array(4).fill({
+            image: '/hero.png',
+            title: 'Card Title',
+            description:
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ratione vitae tempore incidunt illum blanditiis totam magnam dolorem accusamus labore?',
+            href: '#',
+          })}
+        />
       </ContentWrapper>
     </div>
   );
