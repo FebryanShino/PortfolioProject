@@ -14,79 +14,91 @@ import RenderList from './pages/blender-render/RenderList';
 import MainLayout from './MainLayout';
 import NotFound from './pages/NotFound';
 import ProgrammingLandingPage from './pages/programming/ProgrammingLandingPage';
+import { ConfigProvider } from 'antd';
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <MainLayout>
-              <Homepage />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/creation"
-          element={
-            <MainLayout>
-              <CreationPage />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <MainLayout>
-              <AboutMePage />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/creation/blender"
-          element={
-            <MainLayout>
-              <BlenderCreationPage />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/creation/blender/assets"
-          element={
-            <MainLayout>
-              <AssetsSearch />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/creation/blender/assets/:id"
-          element={
-            <MainLayout>
-              <AssetDetail />
-            </MainLayout>
-          }
-        />
+    <div className="App bg-[hsl(0,0%,95%)]">
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: '#f2f2f2',
+            // colorFillSecondary: 'black',
+            // colorTextSecondary: 'black',
+            // colorBgContainer: '#f2f2f2',
+          },
+        }}
+      >
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MainLayout>
+                <Homepage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation"
+            element={
+              <MainLayout>
+                <CreationPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <MainLayout>
+                <AboutMePage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/blender"
+            element={
+              <MainLayout>
+                <BlenderCreationPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/blender/assets"
+            element={
+              <MainLayout>
+                <AssetsSearch />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/blender/assets/:id"
+            element={
+              <MainLayout>
+                <AssetDetail />
+              </MainLayout>
+            }
+          />
 
-        <Route
-          path="/creation/blender/render"
-          element={
-            <MainLayout>
-              <RenderList />
-            </MainLayout>
-          }
-        />
+          <Route
+            path="/creation/blender/render"
+            element={
+              <MainLayout>
+                <RenderList />
+              </MainLayout>
+            }
+          />
 
-        <Route
-          path="/creation/programming"
-          element={
-            <MainLayout>
-              <ProgrammingLandingPage />
-            </MainLayout>
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route
+            path="/creation/programming"
+            element={
+              <MainLayout>
+                <ProgrammingLandingPage />
+              </MainLayout>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ConfigProvider>
     </div>
   );
 }
