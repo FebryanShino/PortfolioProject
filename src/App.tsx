@@ -10,6 +10,7 @@ import BlenderCreationPage from './pages/BlenderCreationPage';
 import AboutMePage from './pages/AboutMePage';
 import AssetsSearch from './pages/blender-asset/AssetsSearch';
 import AssetDetail from './pages/blender-asset/AssetDetail';
+import RenderList from './pages/blender-render/RenderList';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path="/creation/blender" element={<BlenderCreationPage />} />
         <Route path="/creation/blender/assets" element={<AssetsSearch />} />
         <Route path="/creation/blender/assets/:id" element={<AssetDetail />} />
+
+        <Route path="/creation/blender/render" element={<RenderList />} />
       </Routes>
       <Footer />
     </div>
