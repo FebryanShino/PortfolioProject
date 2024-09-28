@@ -7,7 +7,7 @@ export default function ContentWrapper({
   ...props
 }: ContentWrapperProps) {
   return (
-    <div className="mx-20 my-32" {...props}>
+    <div className="mx-20 py-32" {...props}>
       {children}
     </div>
   );
