@@ -27,6 +27,11 @@ export default function CreationPage() {
           animationStartPosition="RIGHT"
           href="programming"
         />
+        <CreationCategory
+          title="Game"
+          animationStartPosition="RIGHT"
+          href="game"
+        />
       </Flex>
     </ContentWrapper>
   );
