@@ -21,7 +21,28 @@ export default function RenderList() {
   }, []);
   return (
     <div className="overflow-x-hidden">
-      <Hero />
+      <div
+        style={{
+          width: '100%',
+          height: '100svh',
+          backgroundImage: 'url(/hero.png)',
+          backgroundSize: 'cover',
+        }}
+      >
+        <Flex
+          className="h-full text-left"
+          style={{
+            background:
+              'linear-gradient(180deg, hsla(0,0%,0%, .5), hsla(0,0%,0%, 1))',
+            backdropFilter: 'blur(10px)',
+          }}
+          vertical
+          justify="center"
+          gap={0}
+        >
+          lrem
+        </Flex>
+      </div>
       {data.map((item: string) => (
         <RenderCard image={item} />
       ))}
