@@ -8,13 +8,13 @@ import { ScrollTrigger } from 'gsap/all';
 const { Title } = Typography;
 gsap.registerPlugin(ScrollTrigger);
 
-export default function BannerCard({
-  title,
-  href,
-}: {
+interface BannerCardInterface extends React.ComponentPropsWithoutRef<'div'> {
   title: string;
   href: string;
-}) {
+  backgroundUrl: string;
+}
+
+export default function BannerCard(props: BannerCardInterface) {
   const navigate = useNavigate();
   const container = useRef(null);
 
@@ -44,11 +44,11 @@ export default function BannerCard({
       justify="flex-end"
       align="flex-start"
       vertical
-      style={{ backgroundImage: 'url(/hero.png)' }}
+      style={{ backgroundImage: `url(${props.backgroundUrl})` }}
       className="bg-cover bg-center w-full h-96 cursor-pointer px-20 py-10"
     >
-      <Title level={1}>{title}</Title>
-      <Button ghost size="large" onClick={() => navigate(href)}>
+      <Title level={1}>{props.title}</Title>
+      <Button ghost size="large" onClick={() => navigate(props.href)}>
         Browse
       </Button>
     </Flex>
