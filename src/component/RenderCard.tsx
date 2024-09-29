@@ -3,12 +3,15 @@ import { useGSAP } from '@gsap/react';
 import { Flex } from 'antd';
 import gsap from 'gsap';
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface RenderCardProps extends React.ComponentPropsWithoutRef<'div'> {
-  image: string;
+  backgroundUrl: string;
+  href: string;
 }
 
 export default function RenderCard(props: RenderCardProps) {
+  const navigate = useNavigate();
   const container = useRef(null);
   const content = useRef(null);
   useGSAP(
@@ -49,10 +52,11 @@ export default function RenderCard(props: RenderCardProps) {
       ref={container}
       className="w-full h-[30rem] bg-cover bg-center overflow-x-hidden cursor-pointer"
       style={{
-        backgroundImage: `url(${props.image})`,
+        backgroundImage: `url(${props.backgroundUrl})`,
       }}
       onMouseEnter={() => onHover()}
       onMouseLeave={() => notOnHover()}
+      onClick={() => navigate(props.href)}
     >
       <div ref={content} className="w-full h-full bg-[rgba(0,0,0,.6)]"></div>
     </Flex>
