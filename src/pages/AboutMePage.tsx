@@ -51,40 +51,32 @@ export default function AboutMePage() {
     <div>
       <Flex
         style={{ backgroundImage: 'url(/hero.png)' }}
-        className="w-full h-[30rem] bg-cover bg-center px-20"
+        className="w-full h-auto bg-cover bg-center"
         align="center"
         justify="space-between"
-        wrap
       >
-        <Space direction="vertical" className="w-[30rem]">
-          <Title level={2} className="text-left">
-            Hello,
-            <br /> I'm FebryanShino
-          </Title>
-          <Paragraph className="text-left">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa
-            itaque, sunt vel exercitationem adipisci ut molestias laboriosam a
-            dicta? Reprehenderit ducimus at quam adipisci temporibus quaerat.
-            Quisquam, voluptatibus! Maiores quam, esse enim vero eum cum, libero
-            officiis vel velit blanditiis quia est incidunt fugiat eaque fugit
-            assumenda dicta odio iste.
-          </Paragraph>
-        </Space>
-        <Space>
-          <Avatar size={256} icon={<UserOutlined />} />
-        </Space>
+        <ContentWrapper>
+          <Flex justify="space-between">
+            <Space direction="vertical" className="w-[30rem]">
+              <Title level={2} className="text-left">
+                Hello,
+                <br /> I'm FebryanShino
+              </Title>
+              <Descriptions
+                className="text-left"
+                bordered
+                column={1}
+                items={items}
+              />
+            </Space>
+            <Space>
+              <Avatar size={256} icon={<UserOutlined />} />
+            </Space>
+          </Flex>
+        </ContentWrapper>
       </Flex>
 
       <ContentWrapper>
-        <Space direction="vertical">
-          <Title>Bio</Title>
-          <Descriptions
-            className="text-left"
-            bordered
-            column={1}
-            items={items}
-          />
-        </Space>
         <Flex vertical align="center">
           <Title>Accomplishments</Title>
           <Space>
