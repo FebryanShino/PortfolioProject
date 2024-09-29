@@ -20,6 +20,7 @@ import {
 import React from 'react';
 import ContentWrapper from '../component/ContentWrapper';
 import CountUp from 'react-countup';
+import { databaseURL } from '../app.constants';
 
 const { Title, Paragraph } = Typography;
 
@@ -38,7 +39,7 @@ const items: DescriptionsProps['items'] = [
   },
   {
     label: 'Hobby',
-    children: 'LIstening to music',
+    children: 'Listening to music',
   },
 ];
 
@@ -50,7 +51,9 @@ export default function AboutMePage() {
   return (
     <div>
       <Flex
-        style={{ backgroundImage: 'url(/hero.png)' }}
+        style={{
+          backgroundImage: `url(${databaseURL('website', 'images/hero.png')})`,
+        }}
         className="w-full h-auto bg-cover bg-center"
         align="center"
         justify="space-between"
@@ -76,7 +79,7 @@ export default function AboutMePage() {
         </ContentWrapper>
       </Flex>
 
-      <ContentWrapper>
+      {/* <ContentWrapper>
         <Flex vertical align="center">
           <Title>Accomplishments</Title>
           <Space>
@@ -170,7 +173,7 @@ export default function AboutMePage() {
             formatter={formatter}
           />
         </Flex>
-      </ContentWrapper>
+      </ContentWrapper> */}
     </div>
   );
 }
