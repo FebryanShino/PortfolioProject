@@ -43,3 +43,11 @@ export const ASSETS_DATA = Array(65)
       href: '#',
     };
   });
+
+export function databaseURL(
+  type: 'database' | 'website',
+  path: string,
+): string {
+  const DATABASE_URL = 'https://febryanshino.github.io/PortfolioDatabase/';
+  return DATABASE_URL + type + '/' + path;
+}
