@@ -7,7 +7,11 @@ import { useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
-export default function NavigationBar() {
+interface NavigationBarProps extends React.ComponentPropsWithoutRef<'div'> {
+  theme?: 'LIGHT' | 'DARK';
+}
+
+export default function NavigationBar(props: NavigationBarProps) {
   const container = useRef(null);
   const navigate = useNavigate();
 
@@ -47,26 +51,56 @@ export default function NavigationBar() {
     >
       <div
         ref={container}
-        className="bg-white absolute w-full h-full ml-[-70px] z-[-1]"
+        className={
+          'absolute w-full h-full ml-[-70px] z-[-1] ' +
+          (props.theme === 'DARK' ? 'bg-black' : 'bg-white')
+        }
       ></div>
       <Flex
         align="flex-end"
         className="cursor-pointer"
         onClick={() => navigate('/')}
       >
-        <Title level={4}>FebryanS</Title>
+        <img
+          src="/logo.png"
+          style={{
+            height: '100px',
+            width: 'auto',
+            filter: props.theme === 'DARK' ? '' : 'invert(100%)',
+          }}
+        />
       </Flex>
       <Space>
-        <Button type="text" ghost onClick={() => navigate('/creation')}>
+        <Button
+          type="text"
+          ghost
+          className={props.theme === 'DARK' ? 'text-white' : ''}
+          onClick={() => navigate('/creation')}
+        >
           Creation
         </Button>
-        <Button type="text" ghost onClick={() => navigate('/blogs')}>
+        <Button
+          type="text"
+          ghost
+          className={props.theme === 'DARK' ? 'text-white' : ''}
+          onClick={() => navigate('/blogs')}
+        >
           Blogs
         </Button>
-        <Button type="text" ghost onClick={() => navigate('/contact')}>
+        <Button
+          type="text"
+          ghost
+          className={props.theme === 'DARK' ? 'text-white' : ''}
+          onClick={() => navigate('/contact')}
+        >
           Contact
         </Button>
-        <Button type="text" ghost onClick={() => navigate('/about')}>
+        <Button
+          type="text"
+          ghost
+          className={props.theme === 'DARK' ? 'text-white' : ''}
+          onClick={() => navigate('/about')}
+        >
           About
         </Button>
       </Space>
