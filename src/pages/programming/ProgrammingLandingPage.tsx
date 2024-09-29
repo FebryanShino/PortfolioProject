@@ -3,10 +3,12 @@ import ContentWrapper from '../../component/ContentWrapper';
 import { GITHUB_PROFILE, GITHUB_REPOS } from '../../services/dummyData';
 import Card from 'antd/es/card/Card';
 import {
+  Avatar,
   Button,
   Divider,
   Empty,
   Flex,
+  List,
   Space,
   Statistic,
   Typography,
@@ -21,7 +23,12 @@ export default function ProgrammingLandingPage() {
   const [githubRepos, setGithubRepos] = useState<any[]>([]);
   useEffect(() => {
     setGithubProfile(GITHUB_PROFILE);
-    setGithubRepos(GITHUB_REPOS);
+    setGithubRepos(
+      GITHUB_REPOS.sort(
+        (a, b) =>
+          new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
+      ),
+    );
   }, []);
   return (
     <ContentWrapper>
@@ -50,6 +57,7 @@ export default function ProgrammingLandingPage() {
                 value={new Date(githubProfile.created_at).toLocaleDateString()}
                 precision={2}
               />
+              <Divider type="vertical" />
               <Statistic
                 title="Number of Repos"
                 value={githubRepos.length}
@@ -57,6 +65,28 @@ export default function ProgrammingLandingPage() {
                 formatter={(value) => <CountUp end={value as number} />}
               />
             </Flex>
+          </Card>
+          <Card
+            className="text-left"
+            title={<Title level={3}>Repositories</Title>}
+          >
+            <List
+              itemLayout="horizontal"
+              dataSource={githubRepos}
+              renderItem={(item, index) => (
+                <List.Item>
+                  <List.Item.Meta
+                    avatar={
+                      <Avatar
+                        src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
+                      />
+                    }
+                    title={<a href="https://ant.design">{item.name}</a>}
+                    description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                  />
+                </List.Item>
+              )}
+            />
           </Card>
         </>
       ) : (
