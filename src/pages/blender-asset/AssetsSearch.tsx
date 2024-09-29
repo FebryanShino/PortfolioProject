@@ -31,7 +31,8 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { DataUtil, SortDirectionType } from '../../utils/DataUtil';
-import { ASSETS_DATA, searchOptions } from '../../app.constants';
+import { ASSETS_DATA, databaseURL, searchOptions } from '../../app.constants';
+import { callAPI } from '../../config/api';
 
 const { Title, Text } = Typography;
 
@@ -44,8 +45,16 @@ export default function AssetsSearch() {
   const [pageCount, setPageCount] = useState<number>(0);
   const [paginatedData, setPaginatedData] = useState<any[]>([]);
 
+  async function fetchAssets() {
+    const data = await callAPI<any[]>({
+      url: databaseURL('database', 'creation/blender/asset/data.json'),
+      method: 'GET',
+    });
+    setAssets(data);
+  }
+
   useEffect(() => {
-    setAssets(ASSETS_DATA);
+    fetchAssets();
   }, []);
 
   useEffect(() => {
@@ -152,10 +161,9 @@ export default function AssetsSearch() {
           {isAscending ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
         </Button>
       </Flex>
-
-      <ResponsiveGridWrapper minSize="18rem">
-        {paginatedData ? (
-          paginatedData.map((item: any, index: number) => (
+      {paginatedData ? (
+        <ResponsiveGridWrapper minSize="18rem">
+          {paginatedData.map((item: any, index: number) => (
             <Card
               cover={
                 <img
@@ -180,11 +188,11 @@ export default function AssetsSearch() {
                 description="This is the description"
               />
             </Card>
-          ))
-        ) : (
-          <Empty />
-        )}
-      </ResponsiveGridWrapper>
+          ))}
+        </ResponsiveGridWrapper>
+      ) : (
+        <Empty />
+      )}
       <Flex justify="center" align="center" gap={10}>
         <Button
           onClick={() =>
