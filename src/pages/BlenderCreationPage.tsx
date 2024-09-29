@@ -37,7 +37,7 @@ export default function BlenderCreationPage() {
     <div>
       <Carousel autoplay autoplaySpeed={3000}>
         {renders.map((item) => (
-          <img src={item.originalImageUrl} />
+          <img src={item.originalImageUrl} className="h-svh w-auto" />
         ))}
       </Carousel>
       <Flex className="bg-black p-8" justify="center">
