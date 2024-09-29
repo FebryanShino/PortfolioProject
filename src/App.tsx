@@ -19,7 +19,7 @@ import GameCreationPage from './pages/GameCreationPage';
 
 function App() {
   return (
-    <div className="App bg-[hsl(0,0%,95%)]">
+    <div className="App bg-[hsl(0,0%,95%)] overflow-x-hidden">
       <ConfigProvider
         theme={{
           token: {
@@ -103,7 +103,7 @@ function App() {
           <Route
             path="/creation/game"
             element={
-              <MainLayout>
+              <MainLayout theme="DARK">
                 <GameCreationPage />
               </MainLayout>
             }
