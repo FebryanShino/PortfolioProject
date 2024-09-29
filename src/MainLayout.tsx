@@ -2,12 +2,14 @@ import React from 'react';
 import NavigationBar from './component/NavigationBar';
 import Footer from './component/Footer';
 
-export default function MainLayout(
-  props: React.ComponentPropsWithoutRef<'div'>,
-) {
+interface MainLayoutProps extends React.ComponentPropsWithoutRef<'div'> {
+  theme?: 'DARK' | 'LIGHT';
+}
+
+export default function MainLayout(props: MainLayoutProps) {
   return (
     <>
-      <NavigationBar />
+      <NavigationBar theme={props.theme} />
       {props.children}
       <Footer />
     </>
