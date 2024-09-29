@@ -99,13 +99,9 @@ export default function ProgrammingLandingPage() {
                   renderItem={(item, index) => (
                     <List.Item>
                       <List.Item.Meta
-                        avatar={
-                          <Avatar
-                            src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
-                          />
-                        }
+                        avatar={<Avatar src={item.owner.avatar_url} />}
                         title={<a href="https://ant.design">{item.name}</a>}
-                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                        description={`Language: ${item.language}`}
                       />
                     </List.Item>
                   )}
