@@ -15,6 +15,7 @@ import MainLayout from './MainLayout';
 import NotFound from './pages/NotFound';
 import ProgrammingLandingPage from './pages/programming/ProgrammingLandingPage';
 import { ConfigProvider } from 'antd';
+import GameCreationPage from './pages/GameCreationPage';
 
 function App() {
   return (
@@ -85,7 +86,7 @@ function App() {
           <Route
             path="/creation/blender/render"
             element={
-              <MainLayout>
+              <MainLayout theme="DARK">
                 <RenderList />
               </MainLayout>
             }
@@ -96,6 +97,14 @@ function App() {
             element={
               <MainLayout>
                 <ProgrammingLandingPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/game"
+            element={
+              <MainLayout>
+                <GameCreationPage />
               </MainLayout>
             }
           />
