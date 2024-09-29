@@ -21,6 +21,7 @@ import React from 'react';
 import ContentWrapper from '../component/ContentWrapper';
 import CountUp from 'react-countup';
 import { databaseURL } from '../app.constants';
+import { useMediaQuery } from 'react-responsive';
 
 const { Title, Paragraph } = Typography;
 
@@ -48,6 +49,9 @@ const formatter: StatisticProps['formatter'] = (value) => (
 );
 
 export default function AboutMePage() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 40rem)',
+  });
   return (
     <div>
       <Flex
@@ -56,10 +60,17 @@ export default function AboutMePage() {
         }}
         className="w-full h-auto bg-cover bg-center"
         align="center"
-        justify="space-between"
       >
         <ContentWrapper>
-          <Flex justify="space-between">
+          <Flex
+            justify={isDesktopOrLaptop ? 'space-between' : 'center'}
+            wrap={!isDesktopOrLaptop}
+          >
+            {!isDesktopOrLaptop && (
+              <Space>
+                <Avatar size={256} icon={<UserOutlined />} />
+              </Space>
+            )}
             <Space direction="vertical" className="w-[30rem]">
               <Title level={2} className="text-left">
                 Hello,
@@ -72,9 +83,11 @@ export default function AboutMePage() {
                 items={items}
               />
             </Space>
-            <Space>
-              <Avatar size={256} icon={<UserOutlined />} />
-            </Space>
+            {isDesktopOrLaptop && (
+              <Space>
+                <Avatar size={256} icon={<UserOutlined />} />
+              </Space>
+            )}
           </Flex>
         </ContentWrapper>
       </Flex>
