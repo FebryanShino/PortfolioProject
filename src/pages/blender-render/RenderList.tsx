@@ -1,23 +1,34 @@
-import { Flex } from 'antd';
+import { Empty, Flex } from 'antd';
 import React, { useEffect, useState } from 'react';
 import RenderCard from '../../component/RenderCard';
 import Hero from '../../component/Hero';
+import { BlenderRenderResponseType } from '../../config/api/responseTypes';
+import { callAPI } from '../../config/api';
+import { databaseURL } from '../../app.constants';
 
 export default function RenderList() {
-  const [data, setData] = useState<string[]>([]);
+  const [renders, setRenders] = useState<BlenderRenderResponseType[]>([]);
+  useEffect(() => {}, []);
+
+  async function fetchRenders() {
+    const data = await callAPI<BlenderRenderResponseType[]>({
+      url: databaseURL('database', 'creation/blender/render/data.json'),
+      method: 'GET',
+    });
+
+    setRenders(
+      data.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      ),
+    );
+  }
+
   useEffect(() => {
+    fetchRenders();
     window.scrollTo({
       top: 0,
     });
-    const current = Array(20)
-      .fill('')
-      .map(() => {
-        return ['/hero.png', '/room-bed.png', '/room-right.png'][
-          Math.floor(Math.random() * 3)
-        ];
-      });
-
-    setData(current);
   }, []);
   return (
     <div className="overflow-x-hidden">
@@ -25,7 +36,7 @@ export default function RenderList() {
         style={{
           width: '100%',
           height: '100svh',
-          backgroundImage: 'url(/hero.png)',
+          backgroundImage: `url(${databaseURL('website', 'images/hero.png')})`,
           backgroundSize: 'cover',
         }}
       >
@@ -40,12 +51,20 @@ export default function RenderList() {
           justify="center"
           gap={0}
         >
-          lrem
+          Renders
         </Flex>
       </div>
-      {data.map((item: string) => (
-        <RenderCard image={item} />
-      ))}
+      {renders ? (
+        renders.map((item) => (
+          <RenderCard
+            backgroundUrl={item.originalImageUrl}
+            href={item.uniqueId}
+            key={item.uniqueId}
+          />
+        ))
+      ) : (
+        <Empty />
+      )}
     </div>
   );
 }
