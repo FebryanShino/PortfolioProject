@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 interface CreationCategoryProps extends React.ComponentPropsWithoutRef<'div'> {
   title: string;
   href: string;
+  backgroundImage: string;
   animationStartPosition: 'LEFT' | 'CENTER' | 'RIGHT';
 }
 
@@ -57,7 +58,7 @@ export default function CreationCategory(props: CreationCategoryProps) {
   });
 
   const nonHoverAnimation = contextSafe(() => {
-    gsap.to(container.current, { backgroundSize: '200%', duration: 0.5 });
+    gsap.to(container.current, { backgroundSize: '100%', duration: 0.5 });
     gsap.to(
       content.current,
 
@@ -76,7 +77,10 @@ export default function CreationCategory(props: CreationCategoryProps) {
       ref={container}
       onMouseEnter={() => hoverAnimation()}
       onMouseLeave={() => nonHoverAnimation()}
-      style={{ backgroundImage: 'url(/hero.png)', backgroundSize: '200%' }}
+      style={{
+        backgroundImage: `url(${props.backgroundImage})`,
+        backgroundSize: '100%',
+      }}
       className=" bg-center w-60 aspect-square cursor-pointer overflow-hidden"
       onClick={() => navigate(props.href)}
     >
