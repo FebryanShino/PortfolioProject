@@ -13,21 +13,25 @@ export default function CreationPage() {
       <Title level={1}>Creation</Title>
       <Flex justify="center" gap={4} wrap>
         <CreationCategory
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/hero.png"
           title="3D arts"
           animationStartPosition="LEFT"
           href="blender"
         />
         <CreationCategory
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/illustration.webp"
           title="Illustration"
-          animationStartPosition="CENTER"
+          animationStartPosition="LEFT"
           href="illustration"
         />
         <CreationCategory
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/programming.jpg"
           title="Programming"
           animationStartPosition="RIGHT"
           href="programming"
         />
         <CreationCategory
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/game.png"
           title="Game"
           animationStartPosition="RIGHT"
           href="game"
