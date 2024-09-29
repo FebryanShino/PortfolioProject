@@ -3,11 +3,15 @@ import React from 'react';
 import ContentWrapper from './ContentWrapper';
 import { useNavigate } from 'react-router-dom';
 import { databaseURL } from '../app.constants';
+import { useMediaQuery } from 'react-responsive';
 
 const { Text, Title, Paragraph } = Typography;
 
 export default function Hero() {
   const navigate = useNavigate();
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 40rem)',
+  });
   return (
     <div
       style={{
@@ -34,7 +38,7 @@ export default function Hero() {
             <h3>This is</h3>
             <Title level={1}>Febryan Shino</Title>
           </Flex>
-          <Paragraph className="w-[50%]">
+          <Paragraph className={isDesktopOrLaptop ? 'w-[50%]' : 'w-[100%]'}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
             non incidunt odio! Quae quo obcaecati eius, provident vero
             laudantium tempore qui quasi voluptate debitis maxime dolorum?

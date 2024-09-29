@@ -18,10 +18,15 @@ import { Link, Navigate } from 'react-router-dom';
 import CountUp from 'react-countup';
 import { callAPI } from '../../config/api';
 import { GithubProfileResposeType } from '../../config/api/responseTypes';
+import { useMediaQuery } from 'react-responsive';
 
 const { Title, Text, Paragraph } = Typography;
 
 export default function ProgrammingLandingPage() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 40rem)',
+  });
+
   const [githubProfile, setGithubProfile] =
     useState<GithubProfileResposeType>();
   const [githubRepos, setGithubRepos] = useState<any[]>([]);
@@ -48,7 +53,7 @@ export default function ProgrammingLandingPage() {
     <ContentWrapper>
       {githubProfile ? (
         <>
-          <Flex gap={20}>
+          <Flex gap={20} wrap={!isDesktopOrLaptop}>
             <div
               className="w-72 aspect-square bg-cover"
               style={{ backgroundImage: `url(${githubProfile.avatar_url})` }}

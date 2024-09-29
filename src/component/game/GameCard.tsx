@@ -7,6 +7,7 @@ import { Button, Divider, Flex, Image, Space, Typography } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ContentWrapper from '../ContentWrapper';
+import { useMediaQuery } from 'react-responsive';
 
 const { Title, Paragraph } = Typography;
 
@@ -20,6 +21,9 @@ interface GameCardProps extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 export default function GameCard(props: GameCardProps) {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 40rem)',
+  });
   return (
     <div
       style={{
@@ -45,11 +49,14 @@ export default function GameCard(props: GameCardProps) {
               }}
               className=" h-32 w-64"
             ></div>
-            <Space direction="vertical" className="w-[50%]">
+            <Space
+              direction="vertical"
+              className={isDesktopOrLaptop ? 'w-[50%]' : 'w-[100%]'}
+            >
               <Paragraph style={{ color: 'white' }}>
                 {props.description}
               </Paragraph>
-              <Flex align="flex-end">
+              <Flex align="flex-end" wrap={!isDesktopOrLaptop} gap={10}>
                 <Link to={props.playUrl}>
                   <Button
                     size="large"
@@ -60,29 +67,31 @@ export default function GameCard(props: GameCardProps) {
                     Play
                   </Button>
                 </Link>
-                {props.downloadUrl && (
-                  <>
-                    <Divider type="vertical" />
-                    <Link to={props.downloadUrl}>
-                      <Button
-                        ghost
-                        icon={<DownloadOutlined style={{ color: 'white' }} />}
-                      >
-                        Android
-                      </Button>
-                    </Link>
-                  </>
-                )}
-                {props.repositoryUrl && (
-                  <>
-                    <Divider type="vertical" />
-                    <Link to={props.repositoryUrl}>
-                      <Button ghost icon={<GithubOutlined />}>
-                        Repository
-                      </Button>
-                    </Link>
-                  </>
-                )}
+                {isDesktopOrLaptop && <Divider type="vertical" />}
+                <Flex>
+                  {props.downloadUrl && (
+                    <>
+                      <Link to={props.downloadUrl}>
+                        <Button
+                          ghost
+                          icon={<DownloadOutlined style={{ color: 'white' }} />}
+                        >
+                          Android
+                        </Button>
+                      </Link>
+                    </>
+                  )}
+                  {props.repositoryUrl && (
+                    <>
+                      <Divider type="vertical" />
+                      <Link to={props.repositoryUrl}>
+                        <Button ghost icon={<GithubOutlined />}>
+                          Repository
+                        </Button>
+                      </Link>
+                    </>
+                  )}
+                </Flex>
               </Flex>
             </Space>
           </Flex>
