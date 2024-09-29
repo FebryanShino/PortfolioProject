@@ -1,5 +1,5 @@
 import { useGSAP } from '@gsap/react';
-import { Avatar, Button, Card, Flex, Space, Typography } from 'antd';
+import { Avatar, Button, Card, Empty, Flex, Space, Typography } from 'antd';
 import gsap from 'gsap';
 import React, { useRef } from 'react';
 import ResponsiveGridWrapper from './ResponsiveGridWrapper';
@@ -9,6 +9,7 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import Meta from 'antd/es/card/Meta';
+import { useNavigate } from 'react-router-dom';
 
 const { Title, Paragraph } = Typography;
 
@@ -24,6 +25,7 @@ interface CardsPreviewContainer extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 export default function CardsPreviewContainer(props: CardsPreviewContainer) {
+  const navigate = useNavigate();
   const container = useRef(null);
   useGSAP(
     () => {
@@ -51,31 +53,37 @@ export default function CardsPreviewContainer(props: CardsPreviewContainer) {
     >
       <Flex justify="space-between" className="mb-10 text-left">
         <Title level={3}>Latest Posts</Title>
-        <Button type="link">More</Button>
+        <Button type="link" onClick={() => navigate('blogs')}>
+          More
+        </Button>
       </Flex>
-      <ResponsiveGridWrapper minSize="18rem">
-        {props.items.map((item: CardsPreview) => (
-          <Card loading={false} cover={<img alt="example" src="/hero.png" />}>
-            <Meta
-              title={
-                <Title level={4} className="text-left">
-                  {item.title}
-                </Title>
-              }
-              description={
-                <Space direction="vertical" align="start">
-                  <Paragraph className="text-left" ellipsis={{ rows: 2 }}>
-                    {item.description}
-                  </Paragraph>
-                  <Button type="link" className="p-0">
-                    Read More
-                  </Button>
-                </Space>
-              }
-            />
-          </Card>
-        ))}
-      </ResponsiveGridWrapper>
+      {props.items.length !== 0 ? (
+        <ResponsiveGridWrapper minSize="15rem">
+          {props.items.map((item: CardsPreview) => (
+            <Card loading={false} cover={<img alt="example" src="/hero.png" />}>
+              <Meta
+                title={
+                  <Title level={4} className="text-left">
+                    {item.title}
+                  </Title>
+                }
+                description={
+                  <Space direction="vertical" align="start">
+                    <Paragraph className="text-left" ellipsis={{ rows: 2 }}>
+                      {item.description}
+                    </Paragraph>
+                    <Button type="link" className="p-0">
+                      Read More
+                    </Button>
+                  </Space>
+                }
+              />
+            </Card>
+          ))}
+        </ResponsiveGridWrapper>
+      ) : (
+        <Empty />
+      )}
     </div>
   );
 }
