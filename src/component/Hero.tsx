@@ -2,6 +2,7 @@ import { Button, Divider, Flex, Space, Typography } from 'antd';
 import React from 'react';
 import ContentWrapper from './ContentWrapper';
 import { useNavigate } from 'react-router-dom';
+import { databaseURL } from '../app.constants';
 
 const { Text, Title, Paragraph } = Typography;
 
@@ -12,7 +13,7 @@ export default function Hero() {
       style={{
         width: '100%',
         height: '100svh',
-        backgroundImage: 'url(/hero.png)',
+        backgroundImage: `url(${databaseURL('website', 'images/hero.png')})`,
         backgroundSize: 'cover',
       }}
     >
@@ -29,7 +30,7 @@ export default function Hero() {
       >
         <ContentWrapper contentGap={0}>
           <Flex vertical>
-            <Text>Good Morning,</Text>
+            <Text>Hello!</Text>
             <h3>This is</h3>
             <Title level={1}>Febryan Shino</Title>
           </Flex>
@@ -48,7 +49,7 @@ export default function Hero() {
           <Button
             className="w-32 bg-[#453f3c] text-white"
             size="large"
-            onClick={() => navigate('about')}
+            onClick={() => navigate('contact')}
           >
             Contact me
           </Button>
