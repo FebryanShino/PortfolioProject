@@ -8,8 +8,9 @@ interface ContentWrapperProps extends React.ComponentPropsWithRef<'div'> {
 
 export default function ContentWrapper(props: ContentWrapperProps) {
   return (
-    <Flex className="w-[100%] py-32" align="center" vertical {...props}>
+    <Flex className="w-[100%]" align="center" vertical {...props}>
       <Flex
+        className="h-[100%] py-32"
         vertical
         gap={props.contentGap ? props.contentGap : 20}
         style={{
