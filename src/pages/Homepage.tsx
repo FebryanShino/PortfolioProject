@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Hero from '../component/Hero';
 import { Avatar, Card, Carousel, Descriptions, Image, Typography } from 'antd';
 import {
@@ -11,30 +11,35 @@ import ResponsiveGridWrapper from '../component/ResponsiveGridWrapper';
 import ContentWrapper from '../component/ContentWrapper';
 import BannerCard from '../component/BannerCard';
 import CardsPreviewContainer from '../component/CardsPreviewContainer';
+import { callAPI } from '../config/api';
+import { databaseURL } from '../app.constants';
 
 const { Title } = Typography;
 
 export default function Homepage() {
+  const [latestPosts, setLatestPosts] = useState<any[]>([]);
+
+  async function fetchBlogs() {
+    const data = await callAPI<any[]>({
+      url: databaseURL('database', 'blog/data.json'),
+      method: 'GET',
+    });
+    setLatestPosts(data.slice(0, 5));
+  }
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
   return (
     <div>
       <Hero />
       <ContentWrapper>
-        <Carousel autoplay autoplaySpeed={3000}>
-          {['', '', '', '', ''].map((item: string) => (
-            <img src="/hero.png" />
-          ))}
-        </Carousel>
-        <BannerCard href="/creation" title="Creation" />
-        <CardsPreviewContainer
-          style={{ marginTop: 100 }}
-          items={Array(4).fill({
-            image: '/hero.png',
-            title: 'Card Title',
-            description:
-              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ratione vitae tempore incidunt illum blanditiis totam magnam dolorem accusamus labore?',
-            href: '#',
-          })}
+        <BannerCard
+          href="/creation"
+          title="Creation"
+          backgroundUrl={databaseURL('website', 'images/hero.png')}
         />
+        <CardsPreviewContainer style={{ marginTop: 100 }} items={latestPosts} />
       </ContentWrapper>
     </div>
   );
