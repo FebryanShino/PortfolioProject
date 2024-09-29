@@ -23,6 +23,9 @@ function App() {
         theme={{
           token: {
             colorPrimary: '#f2f2f2',
+            fontSize: 16,
+            colorTextSecondary: 'black',
+            colorFillTertiary: '#453f3c',
             // colorFillSecondary: 'black',
             // colorTextSecondary: 'black',
             // colorBgContainer: '#f2f2f2',
