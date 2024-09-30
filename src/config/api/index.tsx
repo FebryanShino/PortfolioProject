@@ -14,5 +14,9 @@ export async function callAPI<T>({
     body: JSON.stringify(data),
   });
 
-  return await response.json();
+  try {
+    return await response.json();
+  } catch (error) {
+    throw error;
+  }
 }
