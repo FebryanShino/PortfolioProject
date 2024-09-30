@@ -56,8 +56,12 @@ export default function GameCard(props: GameCardProps) {
               <Paragraph style={{ color: 'white' }}>
                 {props.description}
               </Paragraph>
-              <Flex align="flex-end" wrap={!isDesktopOrLaptop} gap={10}>
-                <Link to={props.playUrl}>
+              <Flex
+                align="flex-end"
+                wrap={!isDesktopOrLaptop}
+                gap={!isDesktopOrLaptop ? 10 : 0}
+              >
+                <a href={props.playUrl}>
                   <Button
                     size="large"
                     style={{ color: 'white' }}
@@ -66,7 +70,7 @@ export default function GameCard(props: GameCardProps) {
                   >
                     Play
                   </Button>
-                </Link>
+                </a>
                 {isDesktopOrLaptop && <Divider type="vertical" />}
                 <Flex>
                   {props.downloadUrl && (
