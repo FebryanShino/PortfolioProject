@@ -59,7 +59,7 @@ export default function NavigationBar(props: NavigationBarProps) {
       style={{
         height: 70,
         width: '100%',
-        zIndex: 9998,
+        zIndex: 100,
         position: 'fixed',
         top: 0,
         left: 0,
