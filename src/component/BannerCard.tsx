@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/all';
+import { ArrowRightOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 gsap.registerPlugin(ScrollTrigger);
@@ -45,12 +46,33 @@ export default function BannerCard(props: BannerCardInterface) {
       align="flex-start"
       vertical
       style={{ backgroundImage: `url(${props.backgroundUrl})` }}
-      className="bg-cover bg-center w-full h-96 cursor-pointer px-20 py-10"
+      className="bg-cover bg-center w-full h-96 cursor-pointer relative"
     >
-      <Title level={1}>{props.title}</Title>
-      <Button ghost size="large" onClick={() => navigate(props.href)}>
-        Browse
-      </Button>
+      <div
+        className="absolute w-full h-full z-[-1]"
+        style={{
+          background:
+            'linear-gradient(45deg, hsla(0,0%,0%, .8), hsla(0,0%,0%, .3))',
+        }}
+      />
+      <div className="p-10 text-left">
+        <Title level={1} style={{ color: 'white' }}>
+          {props.title}
+        </Title>
+        <Button
+          ghost
+          iconPosition="end"
+          icon={<ArrowRightOutlined className="text-white" />}
+          size="large"
+          onClick={() => navigate(props.href)}
+          style={{
+            backgroundColor: 'hsla(0,0%,50%,.3)',
+            backdropFilter: 'blur(10px)',
+          }}
+        >
+          Browse
+        </Button>
+      </div>
     </Flex>
   );
 }
