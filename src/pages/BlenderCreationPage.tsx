@@ -35,16 +35,16 @@ export default function BlenderCreationPage() {
 
   return (
     <div>
-      <Carousel autoplay autoplaySpeed={3000}>
-        {renders.map((item) => (
-          <img src={item.originalImageUrl} className="h-svh w-auto" />
-        ))}
-      </Carousel>
       <Flex className="bg-black p-8" justify="center">
         <Title level={1}>
           <span>Feel the world</span>
         </Title>
       </Flex>
+      <Carousel autoplay autoplaySpeed={3000}>
+        {renders.map((item) => (
+          <img src={item.originalImageUrl} />
+        ))}
+      </Carousel>
 
       {renders && (
         <Splitter
