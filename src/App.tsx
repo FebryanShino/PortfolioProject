@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
@@ -16,6 +16,7 @@ import NotFound from './pages/NotFound';
 import ProgrammingLandingPage from './pages/programming/ProgrammingLandingPage';
 import { ConfigProvider } from 'antd';
 import GameCreationPage from './pages/GameCreationPage';
+import RenderDetail from './pages/blender-render/RenderDetail';
 
 function App() {
   return (
@@ -61,7 +62,7 @@ function App() {
           <Route
             path="/creation/blender"
             element={
-              <MainLayout>
+              <MainLayout theme="DARK">
                 <BlenderCreationPage />
               </MainLayout>
             }
@@ -88,6 +89,14 @@ function App() {
             element={
               <MainLayout theme="DARK">
                 <RenderList />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/blender/render/:id"
+            element={
+              <MainLayout>
+                <RenderDetail />
               </MainLayout>
             }
           />
