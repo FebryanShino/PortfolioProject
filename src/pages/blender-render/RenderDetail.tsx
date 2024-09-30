@@ -87,11 +87,11 @@ export default function RenderDetail() {
           </Typography.Title>
           <Image src={render.originalImageUrl} />
           <Space>
-            <Link to={render.originalImageUrl}>
+            <a href={render.originalImageUrl}>
               <Button icon={<DownloadOutlined />} size="large">
                 Download Image
               </Button>
-            </Link>
+            </a>
             {renderDetail?.instagramUrl && (
               <a href={renderDetail.instagramUrl}>
                 <Button icon={<InstagramOutlined />} size="large">
