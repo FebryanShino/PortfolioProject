@@ -18,6 +18,13 @@ export interface BlenderRenderResponseType {
   createdAt: string;
 }
 
+export interface BlenderRenderDetailResponseType {
+  uniqueId: string;
+  variations: string[];
+  instagramUrl?: string;
+  twitterUrl?: string;
+}
+
 export interface GithubProfileResposeType {
   login: string;
   id: number;
