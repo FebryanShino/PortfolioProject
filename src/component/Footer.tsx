@@ -41,9 +41,13 @@ export default function Footer() {
             ))}
           </Flex>
         </Flex>
-        <Divider className="border-white mt-20" />
-        <Flex justify="center">Created with love by FebryanS</Flex>
       </ContentWrapper>
+      <Flex justify="center" align="center" vertical className="pb-10">
+        <Divider className="border-white" />
+        <Typography.Text className="text-white">
+          © {new Date(Date.now()).getFullYear()} FebryanShino
+        </Typography.Text>
+      </Flex>
     </div>
   );
 }
