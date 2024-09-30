@@ -1,4 +1,5 @@
 import {
+  AppstoreOutlined,
   EditOutlined,
   EllipsisOutlined,
   HomeOutlined,
@@ -91,13 +92,9 @@ export default function AssetsSearch() {
       <Breadcrumb
         items={[
           {
-            href: '/',
-            title: <HomeOutlined />,
-          },
-          {
             title: (
               <>
-                <UserOutlined />
+                <AppstoreOutlined />
                 <span>Assets List</span>
               </>
             ),
