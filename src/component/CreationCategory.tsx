@@ -2,6 +2,7 @@ import { useGSAP } from '@gsap/react';
 import { Button, Flex } from 'antd';
 import gsap from 'gsap';
 import React, { useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 
 interface CreationCategoryProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -16,11 +17,14 @@ export default function CreationCategory(props: CreationCategoryProps) {
   const container = useRef(null);
   const content = useRef(null);
   const [onHover, setOnHover] = useState(false);
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 40rem)',
+  });
 
   useGSAP(
     () => {
       gsap.set(content.current, {
-        yPercent: 500,
+        yPercent: 1000,
       });
 
       if (props.animationStartPosition !== 'CENTER') {
@@ -63,7 +67,7 @@ export default function CreationCategory(props: CreationCategoryProps) {
       content.current,
 
       {
-        yPercent: 500,
+        yPercent: 1000,
         ease: 'sine',
         duration: 0.1,
       },
@@ -80,11 +84,12 @@ export default function CreationCategory(props: CreationCategoryProps) {
       style={{
         backgroundImage: `url(${props.backgroundImage})`,
         backgroundSize: '100%',
+        width: isDesktopOrLaptop ? '15rem' : '100%',
       }}
-      className=" bg-center w-60 aspect-square cursor-pointer overflow-hidden"
+      className=" bg-center aspect-square cursor-pointer overflow-hidden"
       onClick={() => navigate(props.href)}
     >
-      <Button ref={content} ghost>
+      <Button ref={content} size="large">
         {props.title}
       </Button>
     </Flex>
