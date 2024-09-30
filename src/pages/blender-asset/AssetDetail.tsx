@@ -1,8 +1,9 @@
 import React from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import ContentWrapper from '../../component/ContentWrapper';
 import { Breadcrumb, Button, Divider, Flex, Space, Typography } from 'antd';
 import {
+  AppstoreOutlined,
   DownloadOutlined,
   HomeOutlined,
   UserOutlined,
@@ -20,16 +21,11 @@ export default function AssetDetail() {
       <Breadcrumb
         items={[
           {
-            href: '/',
-            title: <HomeOutlined />,
-          },
-          {
-            href: '/#/creation/blender/assets',
             title: (
-              <>
-                <UserOutlined />
+              <Link to="/creation/blender/assets">
+                <AppstoreOutlined />
                 <span>Assets List</span>
-              </>
+              </Link>
             ),
           },
           {
