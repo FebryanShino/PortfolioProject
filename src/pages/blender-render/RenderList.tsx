@@ -101,9 +101,9 @@ export default function RenderList() {
         >
           <ContentWrapper>
             <Typography.Title style={{ color: 'white' }}>
-              Browse
+              FebryanShino's
               <br />
-              Rendered Images
+              Blender Journey
             </Typography.Title>
             <AutoComplete
               popupClassName="certain-category-search-dropdown"
