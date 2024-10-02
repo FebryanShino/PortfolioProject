@@ -31,6 +31,7 @@ export default function GameCard(props: GameCardProps) {
         height: '35rem',
         backgroundImage: `url(${props.backgroundUrl})`,
         backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <Flex
