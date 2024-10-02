@@ -18,9 +18,14 @@ export interface BlenderRenderResponseType {
   createdAt: string;
 }
 
+interface BlenderRenderDetailVariationType {
+  compressedImageUrl: string;
+  originalImageUrl: string;
+}
+
 export interface BlenderRenderDetailResponseType {
   uniqueId: string;
-  variations: string[];
+  variations: BlenderRenderDetailVariationType[];
   instagramUrl?: string;
   twitterUrl?: string;
 }

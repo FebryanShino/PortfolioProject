@@ -135,9 +135,9 @@ export default function RenderDetail() {
                 Variations
               </Typography.Title>
               <ResponsiveGridWrapper minSize="20rem">
-                {renderDetail.variations.map((item) => (
+                {renderDetail.variations.map((variation) => (
                   <div className="w-full h-full">
-                    <Image src={item} />
+                    <Image src={variation.compressedImageUrl} />
                   </div>
                 ))}
               </ResponsiveGridWrapper>
