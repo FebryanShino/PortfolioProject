@@ -85,7 +85,7 @@ export default function RenderDetail() {
           <Typography.Title className="text-left">
             {render.name}
           </Typography.Title>
-          <Image src={render.originalImageUrl} />
+          <Image src={render.compressedImageUrl} />
           <Space>
             <a href={render.originalImageUrl}>
               <Button icon={<DownloadOutlined />} size="large">
