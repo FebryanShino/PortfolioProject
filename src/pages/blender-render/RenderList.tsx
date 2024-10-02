@@ -130,7 +130,7 @@ export default function RenderList() {
             title={item.name}
             date={new Date(item.createdAt)}
             description={item.renderEngine}
-            backgroundUrl={item.originalImageUrl}
+            backgroundUrl={item.compressedImageUrl}
             href={item.uniqueId}
             key={item.uniqueId}
           />
