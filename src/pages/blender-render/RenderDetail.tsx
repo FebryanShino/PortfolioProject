@@ -128,7 +128,7 @@ export default function RenderDetail() {
               },
             ]}
           />
-          {renderDetail?.variations && (
+          {renderDetail?.variations && renderDetail.variations.length > 0 && (
             <>
               <Divider />
               <Typography.Title level={3} className="text-left">
