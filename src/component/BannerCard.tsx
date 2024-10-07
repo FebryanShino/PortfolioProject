@@ -29,7 +29,6 @@ export default function BannerCard(props: BannerCardInterface) {
         {
           scrollTrigger: {
             trigger: container.current,
-            toggleActions: 'restart none none none',
           },
           xPercent: 0,
           duration: 2,

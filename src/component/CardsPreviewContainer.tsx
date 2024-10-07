@@ -35,7 +35,6 @@ export default function CardsPreviewContainer(props: CardsPreviewContainer) {
         {
           scrollTrigger: {
             trigger: container.current,
-            toggleActions: 'restart none none none',
           },
           opacity: 1,
           duration: 2,
