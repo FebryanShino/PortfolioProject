@@ -18,3 +18,11 @@ export const FOOTER_LINKS = [
     ],
   },
 ];
+
+export const SOCIAL_MEDIA = {
+  instagram: 'https://www.instagram.com/febryanson',
+  github: 'https://github.com/FebryanShino',
+  twitter: 'https://x.com/FebryanShino',
+  codepen: 'https://codepen.io/FebryanShino',
+  youtube: 'https://www.youtube.com/@FebryanShino',
+};
