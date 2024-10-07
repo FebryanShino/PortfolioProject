@@ -1,12 +1,15 @@
 export interface GameResponseType {
   uniqueId: string;
   name: string;
+  author: string;
+  gameEngine: string;
   description: string;
   gameLogoUrl: string;
   backgroundUrl: string;
   playUrl: string;
   downloadUrl: string;
   repositoryUrl: string;
+  disclaimer: string | boolean;
 }
 
 export interface BlenderRenderResponseType {
