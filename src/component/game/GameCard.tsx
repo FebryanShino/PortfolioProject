@@ -9,15 +9,18 @@ import { Link } from 'react-router-dom';
 import ContentWrapper from '../ContentWrapper';
 import { useMediaQuery } from 'react-responsive';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 interface GameCardProps extends React.ComponentPropsWithoutRef<'div'> {
   backgroundUrl: string;
   gameLogoUrl: string;
   description: string;
   playUrl: string;
+  gameEngine: string;
+  author: string;
   downloadUrl?: string;
   repositoryUrl?: string;
+  disclaimer?: string | boolean;
 }
 
 export default function GameCard(props: GameCardProps) {
@@ -50,12 +53,25 @@ export default function GameCard(props: GameCardProps) {
               }}
               className=" h-32 w-64"
             ></div>
+
             <Space
               direction="vertical"
               className={isDesktopOrLaptop ? 'w-[50%]' : 'w-[100%]'}
             >
+              <Space>
+                <Text style={{ color: 'white' }}>
+                  Made With {props.gameEngine}
+                </Text>
+                <Divider type="vertical" style={{ borderColor: 'white' }} />
+                <Text style={{ color: 'white' }}>By {props.author}</Text>
+              </Space>
               <Paragraph style={{ color: 'white' }}>
                 {props.description}
+                {props.disclaimer && (
+                  <Paragraph style={{ color: 'crimson' }}>
+                    Disclaimer: {props.disclaimer}
+                  </Paragraph>
+                )}
               </Paragraph>
               <Flex
                 align="flex-end"
