@@ -11,7 +11,7 @@ export default function CreationPage() {
   return (
     <ContentWrapper>
       <Title level={1}>Creation</Title>
-      <Flex justify="center" gap={4} wrap>
+      <Flex justify="center" gap={20} wrap>
         <CreationCategory
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/hero.png"
           title="3D arts"
