@@ -1,36 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Flex, Typography } from 'antd';
 import ContentWrapper from '../component/ContentWrapper';
 import { useNavigate } from 'react-router-dom';
 import CreationCategory from '../component/CreationCategory';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 export default function CreationPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   return (
     <ContentWrapper>
-      <Title level={1}>Creation</Title>
+      <Flex justify="center" className="w-auto">
+        <Flex vertical className="text-left w-auto">
+          <Title level={1} style={{ lineHeight: 0 }}>
+            Creation
+          </Title>
+          <Text>#HelloWorld</Text>
+        </Flex>
+      </Flex>
       <Flex justify="center" gap={20} wrap>
         <CreationCategory
+          hashtag="#BLENDER3D"
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/hero.png"
           title="3D arts"
           animationStartPosition="LEFT"
           href="blender"
         />
         <CreationCategory
+          hashtag="#ILLUSTRATION"
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/illustration.webp"
           title="Illustration"
           animationStartPosition="LEFT"
           href="illustration"
         />
         <CreationCategory
+          hashtag="#PROGRAMMING"
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/programming.jpg"
           title="Programming"
           animationStartPosition="RIGHT"
           href="programming"
         />
         <CreationCategory
+          hashtag="#INDIEGAMES"
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/game.png"
           title="Game"
           animationStartPosition="RIGHT"
