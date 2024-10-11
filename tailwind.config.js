@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       colors: {
         success: '#5cb85c',
+        primary: 'white',
+        secondary: 'black',
       },
     },
   },
