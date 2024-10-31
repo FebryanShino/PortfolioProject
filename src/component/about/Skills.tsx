@@ -13,7 +13,7 @@ export default function Skill(props: SkillInterface) {
   return (
     <Card>
       <Title level={2}>My Skills</Title>
-      <ResponsiveGridWrapper minSize="30rem">
+      <ResponsiveGridWrapper minSize="20rem">
         {props.data.map((skill) => (
           <Card>
             <Title level={5}>{skill.title}</Title>

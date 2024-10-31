@@ -1,6 +1,7 @@
 import { CircularProgress } from '@mui/joy';
 import { Button, Card, Flex, Space, Typography } from 'antd';
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useCountUp } from 'use-count-up';
 
 const { Title, Paragraph, Text } = Typography;
@@ -11,6 +12,10 @@ interface TOEICCardInterface extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 export default function TOEICCard(props: TOEICCardInterface) {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 40rem)',
+  });
+
   const { value: totalScorePercentage, reset: resetTotal } = useCountUp({
     isCounting: true,
     duration: 1,
@@ -33,7 +38,7 @@ export default function TOEICCard(props: TOEICCardInterface) {
   );
   return (
     <Card className="w-full">
-      <Flex justify="space-between">
+      <Flex justify="space-between" vertical={!isDesktopOrLaptop}>
         <Space direction="vertical" className="text-left w-full">
           <Title level={2}>
             Ready to <br />

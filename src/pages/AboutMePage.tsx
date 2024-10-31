@@ -77,6 +77,7 @@ export default function AboutMePage() {
         className="w-full h-auto bg-cover bg-center"
         align="center"
         justify="space-between"
+        vertical={!isDesktopOrLaptop}
       >
         <Space direction="vertical" className="text-left w-[50%]">
           <Text>My name is</Text>
