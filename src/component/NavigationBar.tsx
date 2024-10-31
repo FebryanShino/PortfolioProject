@@ -8,7 +8,7 @@ import { Button, Drawer, Empty, Flex, Space, Typography } from 'antd';
 import gsap from 'gsap';
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -82,56 +82,58 @@ export default function NavigationBar(props: NavigationBarProps) {
           paddingInline: isDesktopOrLaptop ? 70 : 20,
         }}
       >
-        <Flex
-          align="flex-end"
-          className="cursor-pointer"
-          onClick={() => navigate('/')}
-        >
-          <img
-            src="/logo.png"
-            style={{
-              height: '100px',
-              width: 'auto',
-              zIndex: 1,
-              filter: props.theme === 'DARK' ? '' : 'invert(100%)',
-            }}
-          />
-        </Flex>
+        <Link to="/">
+          <Flex align="flex-end" className="cursor-pointer">
+            <img
+              src="/logo.png"
+              style={{
+                height: '100px',
+                width: 'auto',
+                zIndex: 1,
+                filter: props.theme === 'DARK' ? '' : 'invert(100%)',
+              }}
+            />
+          </Flex>
+        </Link>
         <Space style={{ zIndex: 9999 }}>
           {isDesktopOrLaptop ? (
             <>
-              <Button
-                type="text"
-                ghost
-                className={props.theme === 'DARK' ? 'text-white' : ''}
-                onClick={() => navigate('/creation')}
-              >
-                Creation
-              </Button>
-              <Button
-                type="text"
-                ghost
-                className={props.theme === 'DARK' ? 'text-white' : ''}
-                onClick={() => navigate('/blogs')}
-              >
-                Blogs
-              </Button>
-              <Button
-                type="text"
-                ghost
-                className={props.theme === 'DARK' ? 'text-white' : ''}
-                onClick={() => navigate('/contact')}
-              >
-                Contact
-              </Button>
-              <Button
-                type="text"
-                ghost
-                className={props.theme === 'DARK' ? 'text-white' : ''}
-                onClick={() => navigate('/about')}
-              >
-                About
-              </Button>
+              <Link to="/creation">
+                <Button
+                  type="text"
+                  ghost
+                  className={props.theme === 'DARK' ? 'text-white' : ''}
+                >
+                  Creation
+                </Button>
+              </Link>
+              <Link to="/blogs">
+                <Button
+                  type="text"
+                  ghost
+                  className={props.theme === 'DARK' ? 'text-white' : ''}
+                >
+                  Blogs
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button
+                  type="text"
+                  ghost
+                  className={props.theme === 'DARK' ? 'text-white' : ''}
+                >
+                  Contact
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button
+                  type="text"
+                  ghost
+                  className={props.theme === 'DARK' ? 'text-white' : ''}
+                >
+                  About
+                </Button>
+              </Link>
             </>
           ) : (
             <>

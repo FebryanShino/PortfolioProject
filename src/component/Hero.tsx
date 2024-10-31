@@ -1,7 +1,7 @@
 import { Button, Divider, Flex, Space, Typography } from 'antd';
 import React from 'react';
 import ContentWrapper from './ContentWrapper';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { databaseURL } from '../app.constants';
 import { useMediaQuery } from 'react-responsive';
 
@@ -50,13 +50,15 @@ export default function Hero() {
             <Text>Frontend Development</Text>
             <Text>Backend Development</Text>
           </Flex>
-          <Button
-            className="w-32 bg-[#453f3c] text-white"
-            size="large"
-            onClick={() => navigate('contact')}
-          >
-            Contact me
-          </Button>
+          <Link to="/contact">
+            <Button
+              className="w-32 bg-[#453f3c] text-white"
+              size="large"
+              // onClick={() => navigate('contact')}
+            >
+              Contact me
+            </Button>
+          </Link>
         </ContentWrapper>
       </Flex>
     </div>
