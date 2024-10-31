@@ -33,6 +33,13 @@ export default function CreationPage() {
           href="blender"
         />
         <CreationCategory
+          hashtag="#GRAPHICDESIGN"
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/graphic_design.webp"
+          title="Graphic Design"
+          animationStartPosition="LEFT"
+          href="graphicdesign"
+        />
+        <CreationCategory
           hashtag="#ILLUSTRATION"
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/illustration.webp"
           title="Illustration"
