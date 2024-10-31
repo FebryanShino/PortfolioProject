@@ -1,4 +1,8 @@
-import { UserOutlined } from '@ant-design/icons';
+import {
+  JavaScriptOutlined,
+  PythonOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { Flex } from 'antd';
 
 const renderItem = (title: string, count: number) => ({
@@ -51,3 +55,85 @@ export function databaseURL(
   const DATABASE_URL = 'https://febryanshino.github.io/PortfolioDatabase/';
   return DATABASE_URL + type + '/' + path;
 }
+
+interface SkillType {
+  title: string;
+  percentage: number;
+  color: string;
+  icon?: any;
+}
+
+export interface SkillCategoryType {
+  title: string;
+  data: SkillType[];
+}
+
+export const SKILLS: SkillCategoryType[] = [
+  {
+    title: 'Programming',
+    data: [
+      {
+        icon: <JavaScriptOutlined />,
+        title: 'JavaScript',
+        percentage: 90,
+        color: 'yellow',
+      },
+      {
+        title: 'React',
+        percentage: 80,
+        color: 'skyblue',
+      },
+      {
+        icon: <PythonOutlined />,
+        title: 'Python',
+        percentage: 70,
+        color: 'orange',
+      },
+      {
+        title: 'Laravel',
+        percentage: 70,
+        color: 'crimson',
+      },
+    ],
+  },
+  {
+    title: '3D Art',
+    data: [
+      {
+        title: 'Blender',
+        percentage: 95,
+        color: 'orange',
+      },
+    ],
+  },
+  {
+    title: 'Illustration',
+    data: [{ title: 'Clip Studio Paint', percentage: 50, color: 'gray' }],
+  },
+  {
+    title: 'Photo Editing',
+    data: [{ title: 'Adobe Photoshop', percentage: 80, color: 'blue' }],
+  },
+  {
+    title: 'Video Editing',
+    data: [
+      { title: 'Adobe Premiere Pro', percentage: 30, color: 'blue' },
+      { title: 'Adobe After Effects', percentage: 40, color: 'blue' },
+      { title: 'Davinci Resolve', percentage: 10, color: 'gray' },
+    ],
+  },
+  {
+    title: 'Graphic Design',
+    data: [
+      { title: 'Adobe Illustrator', percentage: 80, color: 'orange' },
+      { title: 'CorelDRAW', percentage: 60, color: 'lime' },
+    ],
+  },
+  {
+    title: 'Game Development',
+    data: [
+      { title: 'Unity', percentage: 20, color: 'black' },
+      { title: 'Construct 3', percentage: 40, color: 'gray' },
+    ],
+  },
+];
