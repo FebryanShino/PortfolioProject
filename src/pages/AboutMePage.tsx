@@ -6,10 +6,13 @@ import {
 } from '@ant-design/icons';
 import {
   Avatar,
+  Button,
   Card,
   Descriptions,
   DescriptionsProps,
   Flex,
+  Image,
+  Progress,
   Space,
   Statistic,
   StatisticProps,
@@ -20,10 +23,19 @@ import {
 import React from 'react';
 import ContentWrapper from '../component/ContentWrapper';
 import CountUp from 'react-countup';
-import { databaseURL } from '../app.constants';
+import { databaseURL, SKILLS } from '../app.constants';
 import { useMediaQuery } from 'react-responsive';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgress } from '@mui/joy';
+import LinearProgress from '@mui/joy/LinearProgress';
+import { useCountUp } from 'use-count-up';
+import ResponsiveGridWrapper from '../component/ResponsiveGridWrapper';
+import LeetCodeCard from '../component/LeetCodeCard';
+import TOEICCard from '../component/about/TOEICCard';
+import Skills from '../component/about/Skills';
+import Skill from '../component/about/Skills';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 const items: DescriptionsProps['items'] = [
   {
@@ -52,141 +64,42 @@ export default function AboutMePage() {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 40rem)',
   });
+
+  const { value: total, reset: resetTotal } = useCountUp({
+    isCounting: true,
+    duration: 0.5,
+    start: 0,
+    end: 86,
+  });
   return (
-    <div>
+    <ContentWrapper>
       <Flex
-        style={{
-          backgroundImage: `url(${databaseURL('website', 'images/hero.png')})`,
-        }}
         className="w-full h-auto bg-cover bg-center"
         align="center"
+        justify="space-between"
       >
-        <ContentWrapper>
-          <Flex
-            justify={isDesktopOrLaptop ? 'space-between' : 'center'}
-            wrap={!isDesktopOrLaptop}
-          >
-            {!isDesktopOrLaptop && (
-              <Space>
-                <Avatar size={256} icon={<UserOutlined />} />
-              </Space>
-            )}
-            <Space direction="vertical" className="w-[30rem]">
-              <Title level={2} className="text-left">
-                Hello,
-                <br /> I'm FebryanShino
-              </Title>
-              <Descriptions
-                className="text-left"
-                bordered
-                column={1}
-                items={items}
-              />
-            </Space>
-            {isDesktopOrLaptop && (
-              <Space>
-                <Avatar size={256} icon={<UserOutlined />} />
-              </Space>
-            )}
-          </Flex>
-        </ContentWrapper>
+        <Space direction="vertical" className="text-left w-[50%]">
+          <Text>My name is</Text>
+          <Title>Febrian Shino</Title>
+          <Paragraph>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+            voluptas tempora ducimus ex? Neque minima minus architecto
+            reprehenderit repellat nostrum.
+          </Paragraph>
+        </Space>
+        <div
+          className="h-[15rem] aspect-square bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${databaseURL(
+              'website',
+              'images/hero.png',
+            )})`,
+          }}
+        />
       </Flex>
-
-      {/* <ContentWrapper>
-        <Flex vertical align="center">
-          <Title>Accomplishments</Title>
-          <Space>
-            <Card
-              actions={[
-                <EditOutlined key="edit" />,
-                <SettingOutlined key="setting" />,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-              style={{ minWidth: 300 }}
-            >
-              <Card.Meta
-                avatar={
-                  <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
-                }
-                title="Card title"
-                description={
-                  <>
-                    <p>This is the description</p>
-                    <p>This is the description</p>
-                  </>
-                }
-              />
-            </Card>
-            <Card
-              actions={[
-                <EditOutlined key="edit" />,
-                <SettingOutlined key="setting" />,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-              style={{ minWidth: 300 }}
-            >
-              <Card.Meta
-                avatar={
-                  <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
-                }
-                title="Card title"
-                description={
-                  <>
-                    <p>This is the description</p>
-                    <p>This is the description</p>
-                  </>
-                }
-              />
-            </Card>
-            <Card
-              actions={[
-                <EditOutlined key="edit" />,
-                <SettingOutlined key="setting" />,
-                <EllipsisOutlined key="ellipsis" />,
-              ]}
-              style={{ minWidth: 300 }}
-            >
-              <Card.Meta
-                avatar={
-                  <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
-                }
-                title="Card title"
-                description={
-                  <>
-                    <p>This is the description</p>
-                    <p>This is the description</p>
-                  </>
-                }
-              />
-            </Card>
-          </Space>
-        </Flex>
-        <Flex justify="center" align="center">
-          <Steps
-            className="w-64"
-            direction="vertical"
-            size="small"
-            current={1}
-            items={[
-              { title: 'Finished', description: 'something' },
-              {
-                title: 'In Progress',
-                description: 'lorem',
-              },
-              {
-                title: 'Waiting',
-                description: 'something',
-              },
-            ]}
-          />
-          <Statistic
-            className="text-nowrap"
-            title="Active Users"
-            value={112893}
-            formatter={formatter}
-          />
-        </Flex>
-      </ContentWrapper> */}
-    </div>
+      <TOEICCard listeningScore={440} readingScore={420} />
+      <LeetCodeCard easy={15} medium={0} hard={0} taskTotal={3339} />
+      <Skill data={SKILLS} />
+    </ContentWrapper>
   );
 }
