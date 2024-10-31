@@ -64,7 +64,7 @@ export default function TOEICCard(props: TOEICCardInterface) {
               </CircularProgress>
             </Flex>
           </Card>
-          <Flex>
+          <Flex gap={8}>
             <Card className="w-full">
               <Flex className="w-full" align="center" justify="space-between">
                 <Title className="text-nowrap" level={5}>
