@@ -40,6 +40,13 @@ export default function CreationPage() {
           href="graphicdesign"
         />
         <CreationCategory
+          hashtag="#COMPANYIDEAS"
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/company_ideas.webp"
+          title="Company Ideas"
+          animationStartPosition="LEFT"
+          href="companyideas"
+        />
+        <CreationCategory
           hashtag="#ILLUSTRATION"
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/illustration.webp"
           title="Illustration"
