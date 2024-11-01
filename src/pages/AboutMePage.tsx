@@ -25,11 +25,7 @@ import ContentWrapper from '../component/ContentWrapper';
 import CountUp from 'react-countup';
 import { databaseURL, SKILLS } from '../app.constants';
 import { useMediaQuery } from 'react-responsive';
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
-import { CircularProgress } from '@mui/joy';
-import LinearProgress from '@mui/joy/LinearProgress';
 import { useCountUp } from 'use-count-up';
-import ResponsiveGridWrapper from '../component/ResponsiveGridWrapper';
 import LeetCodeCard from '../component/LeetCodeCard';
 import TOEICCard from '../component/about/TOEICCard';
 import Skills from '../component/about/Skills';
@@ -65,21 +61,17 @@ export default function AboutMePage() {
     query: '(min-width: 40rem)',
   });
 
-  const { value: total, reset: resetTotal } = useCountUp({
-    isCounting: true,
-    duration: 0.5,
-    start: 0,
-    end: 86,
-  });
   return (
     <ContentWrapper>
       <Flex
-        className="w-full h-auto bg-cover bg-center"
+        className={`w-full h-auto bg-cover bg-center ${
+          isDesktopOrLaptop ? '' : 'flex-col-reverse'
+        }`}
         align="center"
         justify="space-between"
         vertical={!isDesktopOrLaptop}
       >
-        <Space direction="vertical" className="text-left w-[50%]">
+        <Space direction="vertical" className="text-left w-full">
           <Text>My name is</Text>
           <Title>Febrian Shino</Title>
           <Paragraph>
@@ -89,7 +81,9 @@ export default function AboutMePage() {
           </Paragraph>
         </Space>
         <div
-          className="h-[15rem] aspect-square bg-cover bg-center"
+          className={`${
+            isDesktopOrLaptop ? 'w-[30rem]' : 'w-full'
+          } aspect-square bg-cover bg-center`}
           style={{
             backgroundImage: `url(${databaseURL(
               'website',

@@ -1,6 +1,7 @@
 import { CircularProgress } from '@mui/joy';
 import { Card, Flex, Progress, Space, Typography } from 'antd';
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 interface LeetCodeCardInterface extends React.ComponentPropsWithoutRef<'div'> {
   easy: number;
@@ -10,9 +11,16 @@ interface LeetCodeCardInterface extends React.ComponentPropsWithoutRef<'div'> {
 }
 
 export default function LeetCodeCard(props: LeetCodeCardInterface) {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 40rem)',
+  });
   return (
     <Card className="w-full">
-      <Flex justify="space-between" gap={50}>
+      <Flex
+        justify="space-between"
+        gap={50}
+        className={isDesktopOrLaptop ? '' : 'flex-col-reverse'}
+      >
         <CircularProgress
           determinate
           sx={{ '--CircularProgress-size': '20rem' }}

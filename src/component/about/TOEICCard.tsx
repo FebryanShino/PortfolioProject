@@ -62,7 +62,11 @@ export default function TOEICCard(props: TOEICCardInterface) {
               </Title>
               <CircularProgress
                 determinate
-                sx={{ '--CircularProgress-size': '10rem' }}
+                sx={{
+                  '--CircularProgress-size': isDesktopOrLaptop
+                    ? '10rem'
+                    : '8rem',
+                }}
                 value={totalScorePercentage as number}
               >
                 {props.readingScore + props.listeningScore}
@@ -71,7 +75,12 @@ export default function TOEICCard(props: TOEICCardInterface) {
           </Card>
           <Flex gap={8}>
             <Card className="w-full">
-              <Flex className="w-full" align="center" justify="space-between">
+              <Flex
+                className="w-full"
+                align="center"
+                justify="space-between"
+                vertical={!isDesktopOrLaptop}
+              >
                 <Title className="text-nowrap" level={5}>
                   Reading
                 </Title>
@@ -86,7 +95,12 @@ export default function TOEICCard(props: TOEICCardInterface) {
               </Flex>
             </Card>
             <Card className="w-full">
-              <Flex className="w-full" align="center" justify="space-between">
+              <Flex
+                className="w-full"
+                align="center"
+                justify="space-between"
+                vertical={!isDesktopOrLaptop}
+              >
                 <Title className="text-nowrap" level={5}>
                   Listening
                 </Title>
