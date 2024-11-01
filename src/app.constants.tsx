@@ -137,3 +137,5 @@ export const SKILLS: SkillCategoryType[] = [
     ],
   },
 ];
+
+export const CREATION_CATEGORIES = [];
