@@ -20,7 +20,7 @@ import {
   Timeline,
   Typography,
 } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import ContentWrapper from '../component/ContentWrapper';
 import CountUp from 'react-countup';
 import { databaseURL, SKILLS } from '../app.constants';
@@ -30,6 +30,7 @@ import LeetCodeCard from '../component/LeetCodeCard';
 import TOEICCard from '../component/about/TOEICCard';
 import Skills from '../component/about/Skills';
 import Skill from '../component/about/Skills';
+import DetailCard from '../component/about/DetailCard';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -61,6 +62,12 @@ export default function AboutMePage() {
     query: '(min-width: 40rem)',
   });
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   return (
     <ContentWrapper>
       <Flex
@@ -72,12 +79,11 @@ export default function AboutMePage() {
         vertical={!isDesktopOrLaptop}
       >
         <Space direction="vertical" className="text-left w-full">
-          <Text>My name is</Text>
-          <Title>Febrian Shino</Title>
+          <Text>I am</Text>
+          <Title>Febryan Shino</Title>
           <Paragraph>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            voluptas tempora ducimus ex? Neque minima minus architecto
-            reprehenderit repellat nostrum.
+            A Blender Artist, Programmer, Frontend Web Developer, and a Tech
+            Enthusiast
           </Paragraph>
         </Space>
         <div
@@ -92,8 +98,16 @@ export default function AboutMePage() {
           }}
         />
       </Flex>
+      <DetailCard />
       <TOEICCard listeningScore={440} readingScore={420} />
-      <LeetCodeCard easy={15} medium={0} hard={0} taskTotal={3339} />
+      <LeetCodeCard
+        easy={15}
+        medium={0}
+        hard={0}
+        taskEasyTotal={832}
+        taskMediumTotal={1750}
+        taskHardTotal={761}
+      />
       <Skill data={SKILLS} />
     </ContentWrapper>
   );
