@@ -37,14 +37,14 @@ export default function CreationPage() {
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/graphic_design.webp"
           title="Graphic Design"
           animationStartPosition="LEFT"
-          href="graphicdesign"
+          href="graphic-design"
         />
         <CreationCategory
           hashtag="#COMPANYIDEAS"
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/company_ideas.webp"
           title="Company Ideas"
           animationStartPosition="LEFT"
-          href="companyideas"
+          href="company-ideas"
         />
         <CreationCategory
           hashtag="#ILLUSTRATION"
