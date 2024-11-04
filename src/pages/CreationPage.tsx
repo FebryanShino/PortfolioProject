@@ -28,9 +28,31 @@ export default function CreationPage() {
         <CreationCategory
           hashtag="#BLENDER3D"
           backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/hero.png"
-          title="3D arts"
+          title="3D Arts"
           animationStartPosition="LEFT"
           href="blender"
+        />
+
+        <CreationCategory
+          hashtag="#INDIEGAMES"
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/game.png"
+          title="Game"
+          animationStartPosition="RIGHT"
+          href="game"
+        />
+        <CreationCategory
+          hashtag="#PROGRAMMING"
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/programming.jpg"
+          title="Programming"
+          animationStartPosition="RIGHT"
+          href="programming"
+        />
+        <CreationCategory
+          hashtag="#ILLUSTRATION"
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/illustration.webp"
+          title="Illustration"
+          animationStartPosition="LEFT"
+          href="illustration"
         />
         <CreationCategory
           hashtag="#GRAPHICDESIGN"
@@ -45,27 +67,6 @@ export default function CreationPage() {
           title="Company Ideas"
           animationStartPosition="LEFT"
           href="company-ideas"
-        />
-        <CreationCategory
-          hashtag="#ILLUSTRATION"
-          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/illustration.webp"
-          title="Illustration"
-          animationStartPosition="LEFT"
-          href="illustration"
-        />
-        <CreationCategory
-          hashtag="#PROGRAMMING"
-          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/programming.jpg"
-          title="Programming"
-          animationStartPosition="RIGHT"
-          href="programming"
-        />
-        <CreationCategory
-          hashtag="#INDIEGAMES"
-          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/game.png"
-          title="Game"
-          animationStartPosition="RIGHT"
-          href="game"
         />
       </Flex>
     </ContentWrapper>
