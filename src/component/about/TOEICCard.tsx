@@ -67,9 +67,13 @@ export default function TOEICCard(props: TOEICCardInterface) {
                     ? '10rem'
                     : '8rem',
                 }}
+                thickness={3}
                 value={totalScorePercentage as number}
               >
-                {props.readingScore + props.listeningScore}
+                <Title level={3}>
+                  {props.readingScore + props.listeningScore}
+                </Title>
+                <Text style={{ fontSize: '.9rem' }}>/990</Text>
               </CircularProgress>
             </Flex>
           </Card>
@@ -87,10 +91,14 @@ export default function TOEICCard(props: TOEICCardInterface) {
                 <CircularProgress
                   determinate
                   sx={{ '--CircularProgress-size': '5rem' }}
-                  size="md"
+                  thickness={3}
+                  color="primary"
                   value={readingScorePercentage as number}
                 >
-                  {props.readingScore}
+                  <Title level={5} style={{ fontSize: '1rem' }}>
+                    {props.readingScore}
+                  </Title>
+                  <Text style={{ fontSize: '.5rem' }}>/495</Text>
                 </CircularProgress>
               </Flex>
             </Card>
@@ -108,8 +116,13 @@ export default function TOEICCard(props: TOEICCardInterface) {
                   determinate
                   sx={{ '--CircularProgress-size': '5rem' }}
                   value={listeningScorePercentage as number}
+                  thickness={3}
+                  color="primary"
                 >
-                  {props.listeningScore}
+                  <Title level={5} style={{ fontSize: '1rem' }}>
+                    {props.listeningScore}
+                  </Title>
+                  <Text style={{ fontSize: '.5rem' }}>/495</Text>
                 </CircularProgress>
               </Flex>
             </Card>
