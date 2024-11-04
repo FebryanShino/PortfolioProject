@@ -28,6 +28,12 @@ export default function Homepage() {
   }
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
+  useEffect(() => {
     fetchBlogs();
   }, []);
   return (

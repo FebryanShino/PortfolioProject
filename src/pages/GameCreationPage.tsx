@@ -7,6 +7,11 @@ import ContentWrapper from '../component/ContentWrapper';
 
 export default function GameCreationPage() {
   const [games, setGames] = useState<GameResponseType[]>([]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   async function fetchGames() {
     const data = await callAPI<GameResponseType[]>({
