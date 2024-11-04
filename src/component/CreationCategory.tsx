@@ -36,11 +36,11 @@ export default function CreationCategory(props: CreationCategoryProps) {
           container.current,
           {
             opacity: 0,
-            xPercent: props.animationStartPosition === 'LEFT' ? -100 : 100,
+            yPercent: 50,
           },
           {
             scrollTrigger: container.current,
-            xPercent: 0,
+            yPercent: 0,
             opacity: 1,
             duration: 1,
           },
