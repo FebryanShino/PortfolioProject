@@ -16,7 +16,7 @@ const items: DescriptionsProps['items'] = [
   {
     key: '3',
     label: 'Hobby',
-    children: 'Programming and Listening to Music',
+    children: 'Programming and listening to music',
   },
   {
     key: '4',
@@ -39,7 +39,7 @@ export default function DetailCard() {
   return (
     <Card className="mt-20">
       <Descriptions
-        title="Detailed Information"
+        title="Bio"
         items={items}
         className="w-full mb-20"
         layout="vertical"
