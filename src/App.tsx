@@ -17,6 +17,8 @@ import ProgrammingLandingPage from './pages/programming/ProgrammingLandingPage';
 import { ConfigProvider } from 'antd';
 import GameCreationPage from './pages/GameCreationPage';
 import RenderDetail from './pages/blender-render/RenderDetail';
+import CompanyIdeasListPage from './pages/company-ideas/CompanyIdeasListPage';
+import CompanyIdeasDetailPage from './pages/company-ideas/CompanyIdeasDetailPage';
 
 function App() {
   return (
@@ -115,6 +117,22 @@ function App() {
             element={
               <MainLayout theme="DARK">
                 <GameCreationPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/company-ideas"
+            element={
+              <MainLayout>
+                <CompanyIdeasListPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/company-ideas/:id"
+            element={
+              <MainLayout>
+                <CompanyIdeasDetailPage />
               </MainLayout>
             }
           />
