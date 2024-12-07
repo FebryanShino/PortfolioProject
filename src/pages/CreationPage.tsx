@@ -68,6 +68,13 @@ export default function CreationPage() {
           animationStartPosition="LEFT"
           href="company-ideas"
         />
+        <CreationCategory
+          hashtag="#ANDROIDAPPS"
+          backgroundImage="https://febryanshino.github.io/PortfolioDatabase/website/images/company_ideas.webp"
+          title="Android Applications"
+          animationStartPosition="LEFT"
+          href="android-apps"
+        />
       </Flex>
     </ContentWrapper>
   );
