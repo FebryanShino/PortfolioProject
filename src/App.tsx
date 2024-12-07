@@ -19,6 +19,8 @@ import GameCreationPage from './pages/GameCreationPage';
 import RenderDetail from './pages/blender-render/RenderDetail';
 import CompanyIdeasListPage from './pages/company-ideas/CompanyIdeasListPage';
 import CompanyIdeasDetailPage from './pages/company-ideas/CompanyIdeasDetailPage';
+import AndroidAppsListPage from './pages/android-apps/AndroidAppsListPage';
+import AndroidAppsDetailPage from './pages/android-apps/AndroidAppsDetailPage';
 
 function App() {
   return (
@@ -133,6 +135,22 @@ function App() {
             element={
               <MainLayout>
                 <CompanyIdeasDetailPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/android-apps"
+            element={
+              <MainLayout>
+                <AndroidAppsListPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/creation/android-apps/:id"
+            element={
+              <MainLayout>
+                <AndroidAppsDetailPage />
               </MainLayout>
             }
           />
