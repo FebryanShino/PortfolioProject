@@ -4,26 +4,24 @@ import { GameResponseType } from '../config/api/responseTypes';
 import { callAPI } from '../config/api';
 import { Empty, Flex, Typography } from 'antd';
 import ContentWrapper from '../component/ContentWrapper';
+import { useQuery } from 'react-query';
 
 export default function GameCreationPage() {
-  const [games, setGames] = useState<GameResponseType[]>([]);
   useEffect(() => {
     window.scrollTo({
       top: 0,
     });
   }, []);
 
+  const { data: games } = useQuery('games', fetchGames);
+
   async function fetchGames() {
     const data = await callAPI<GameResponseType[]>({
       url: 'https://febryanshino.github.io/PortfolioDatabase/database/creation/game/data.json',
       method: 'GET',
     });
-    setGames(data);
+    return data;
   }
-
-  useEffect(() => {
-    fetchGames();
-  }, []);
   return (
     <>
       <div className="bg-black w-full h-[30rem]">
