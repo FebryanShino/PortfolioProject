@@ -10,20 +10,19 @@ import BannerCard from '../component/BannerCard';
 import { databaseURL } from '../app.constants';
 import { BlenderRenderResponseType } from '../config/api/responseTypes';
 import { callAPI } from '../config/api';
+import { useQuery } from 'react-query';
 
 const { Title } = Typography;
 
 export default function BlenderCreationPage() {
   const location = useLocation();
-  const [renders, setRenders] = useState<BlenderRenderResponseType[]>([]);
-  useEffect(() => {}, []);
+  const { data: renders } = useQuery('renders', fetchRenders);
 
   async function fetchRenders() {
-    const data = await callAPI<BlenderRenderResponseType[]>({
+    return await callAPI<BlenderRenderResponseType[]>({
       url: databaseURL('database', 'creation/blender/render/data.json'),
       method: 'GET',
     });
-    setRenders(data);
   }
 
   useEffect(() => {
@@ -40,11 +39,13 @@ export default function BlenderCreationPage() {
           <span>Feel the world</span>
         </Title>
       </Flex>
-      <Carousel autoplay autoplaySpeed={3000}>
-        {renders.map((item) => (
-          <img src={item.originalImageUrl} />
-        ))}
-      </Carousel>
+      {renders && (
+        <Carousel autoplay autoplaySpeed={3000}>
+          {renders.map((item) => (
+            <img src={item.originalImageUrl} />
+          ))}
+        </Carousel>
+      )}
 
       {renders && (
         <Splitter
