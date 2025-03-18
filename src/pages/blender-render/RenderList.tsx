@@ -15,61 +15,52 @@ import {
   SwapLeftOutlined,
   SwapRightOutlined,
 } from '@ant-design/icons';
+import { useQuery } from 'react-query';
 
 export default function RenderList() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [renders, setRenders] = useState<BlenderRenderResponseType[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  // const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>(0);
   const [paginatedData, setPaginatedData] = useState<
     BlenderRenderResponseType[]
   >([]);
-  useEffect(() => {}, []);
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 40rem)',
   });
+  const queryCurrentPage = !isNaN(parseInt(searchParams.get('page') as string))
+    ? parseInt(searchParams.get('page') as string)
+    : 1;
+  const querySearch = (searchParams.get('search') as string) ?? '';
+
+  const { data: renders, status, isFetched } = useQuery('render', fetchRenders);
 
   async function fetchRenders() {
     const data = await callAPI<BlenderRenderResponseType[]>({
       url: databaseURL('database', 'creation/blender/render/data.json'),
       method: 'GET',
     });
-
-    setRenders(
-      data.sort(
-        (a, b) =>
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-      ),
+    return data.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
   }
 
-  useEffect(() => {
-    fetchRenders();
-    window.scrollTo({
-      top: 0,
-    });
-  }, []);
-
-  useEffect(() => {
-    // const searchedData = DataUtit.searchData(
-    //   assets,
-    //   searchParams.get('search') ? (searchParams.get('search') as string) : '',
-    // );
-    const queryCurrentPage = searchParams.get('page') as string;
-    if (queryCurrentPage) setCurrentPage(Number(searchParams.get('page')));
+  function searchAndPaginateData() {
+    // if (queryCurrentPage) setCurrentPage(Number(searchParams.get('page')));
 
     if (renders) {
-      setPageCount(Math.ceil(renders.length / 10));
-
-      setPaginatedData(
-        DataUtil.paginate(
-          renders,
-          10,
-          queryCurrentPage ? Number(queryCurrentPage) : currentPage,
-        ),
+      const searchedData = DataUtil.searchData<BlenderRenderResponseType>(
+        renders,
+        querySearch,
+        'name',
       );
+      setPageCount(Math.ceil(searchedData.length / 10));
+
+      setPaginatedData(DataUtil.paginate(searchedData, 10, queryCurrentPage));
     }
-  }, [renders, searchParams]);
+  }
+
+  useEffect(searchAndPaginateData, [renders, searchParams]);
 
   function scrollToTop() {
     window.scrollTo({
@@ -77,6 +68,7 @@ export default function RenderList() {
       behavior: 'smooth',
     });
   }
+  useEffect(scrollToTop, []);
 
   return (
     <div className="overflow-x-hidden">
@@ -114,16 +106,25 @@ export default function RenderList() {
             >
               <Input.Search
                 size="large"
-                placeholder="Search for images"
+                placeholder={
+                  querySearch != '' ? querySearch : 'Search for images'
+                }
                 className="bg-none"
                 style={{ background: 'transparent' }}
                 variant="filled"
+                onSearch={(value: string) =>
+                  setSearchParams({
+                    ...Object.fromEntries(searchParams),
+                    search: value,
+                    page: '1',
+                  })
+                }
               />
             </AutoComplete>
           </ContentWrapper>
         </Flex>
       </div>
-      {renders &&
+      {isFetched &&
         paginatedData &&
         paginatedData.map((item) => (
           <RenderCard
@@ -135,19 +136,19 @@ export default function RenderList() {
             key={item.uniqueId}
           />
         ))}
-      {currentPage < pageCount + 1 && pageCount > 1 && (
+      {queryCurrentPage < pageCount + 1 && pageCount > 1 && (
         <ContentWrapper>
           <Flex
             className="text-left"
             justify={
-              currentPage > 1 && currentPage < pageCount
+              queryCurrentPage > 1 && queryCurrentPage < pageCount
                 ? 'space-between'
-                : currentPage === 1
+                : queryCurrentPage === 1
                 ? 'flex-start'
                 : 'flex-end'
             }
           >
-            {currentPage < pageCount && (
+            {queryCurrentPage < pageCount && (
               <Button
                 size="large"
                 type="link"
@@ -158,7 +159,7 @@ export default function RenderList() {
                 onClick={() => {
                   setSearchParams({
                     ...Object.fromEntries(searchParams),
-                    page: (currentPage + 1).toString(),
+                    page: (queryCurrentPage + 1).toString(),
                   });
                   scrollToTop();
                 }}
@@ -166,7 +167,7 @@ export default function RenderList() {
                 Next Page
               </Button>
             )}
-            {currentPage > 1 && (
+            {queryCurrentPage > 1 && (
               <Button
                 size="large"
                 type="link"
@@ -176,7 +177,7 @@ export default function RenderList() {
                 onClick={() => {
                   setSearchParams({
                     ...Object.fromEntries(searchParams),
-                    page: (currentPage - 1).toString(),
+                    page: (queryCurrentPage - 1).toString(),
                   });
                   scrollToTop();
                 }}
