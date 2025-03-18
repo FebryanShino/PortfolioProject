@@ -14,53 +14,92 @@ export default function Hero() {
   });
   return (
     <div
+      className="flex"
       style={{
         width: '100%',
         height: '100svh',
-        backgroundImage: `url(${databaseURL('website', 'images/hero.png')})`,
         backgroundSize: 'cover',
       }}
     >
       <Flex
-        className="h-full text-left"
-        style={{
-          background:
-            'linear-gradient(180deg, hsla(0,0%,95%, .5), hsla(0,0%,95%, 1))',
-          backdropFilter: 'blur(10px)',
-        }}
+        className="w-[50%] h-full text-left pt-32"
         vertical
-        justify="center"
         gap={0}
+        justify="space-between"
       >
-        <ContentWrapper contentGap={0}>
+        <div className="px-16">
           <Flex vertical>
-            <Text>Hello!</Text>
-            <h3>This is</h3>
             <Title level={1}>Febryan Shino</Title>
           </Flex>
-          <Paragraph className={isDesktopOrLaptop ? 'w-[50%]' : 'w-[100%]'}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-            non incidunt odio! Quae quo obcaecati eius, provident vero
-            laudantium tempore qui quasi voluptate debitis maxime dolorum?
-            Suscipit at rem velit?
-          </Paragraph>
-          <Flex gap={0} vertical>
-            <Title level={5}>Specialties</Title>
-            <Text>3D arts</Text>
-            <Text>Frontend Development</Text>
-            <Text>Backend Development</Text>
+          <Flex vertical align="end" style={{ border: '.1rem solid black' }}>
+            <Paragraph className="p-3">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              non incidunt odio! Quae quo obcaecati eius, provident vero
+              laudantium tempore qui quasi voluptate debitis maxime dolorum?
+              Suscipit at rem velit?
+            </Paragraph>
+            <Link to="/contact">
+              <Button
+                style={{ transform: 'translate(-1rem, 50%)' }}
+                className="w-32 bg-[black] text-white"
+                size="large"
+                // onClick={() => navigate('contact')}
+              >
+                Contact me
+              </Button>
+            </Link>
           </Flex>
-          <Link to="/contact">
-            <Button
-              className="w-32 bg-[#453f3c] text-white"
-              size="large"
-              // onClick={() => navigate('contact')}
+        </div>
+        <Flex className="w-full h-[40%] mt-auto" align="end">
+          <div
+            className={`h-full w-auto aspect-[2] bg-cover bg-center bg-black`}
+            style={
+              {
+                // backgroundImage: `url(${databaseURL(
+                //   'website',
+                //   'images/hero.png',
+                // )})`,
+              }
+            }
+          >
+            <div
+              className={`h-[25%] w-auto aspect-[4] bg-white text-black text-[1.5rem] flex pl-4 items-center`}
+              style={{
+                transform: 'translate(10%, -50%)',
+                border: '.1rem solid black',
+              }}
             >
-              Contact me
-            </Button>
-          </Link>
-        </ContentWrapper>
+              Specialty
+            </div>
+            <Flex
+              className="ml-[1rem]"
+              gap={0}
+              vertical
+              style={{ color: 'white' }}
+            >
+              <Text style={{ color: 'white' }}>3D arts</Text>
+              <Text style={{ color: 'white' }}>Frontend Development</Text>
+              <Text style={{ color: 'white' }}>Backend Development</Text>
+            </Flex>
+          </div>
+          <div
+            className={`h-[60%] w-auto aspect-[2] bg-cover bg-center`}
+            style={{
+              transform: 'translate(-30%, 30%)',
+              backgroundImage: `url(${databaseURL(
+                'website',
+                'images/hero.png',
+              )})`,
+            }}
+          />
+        </Flex>
       </Flex>
+      <div
+        className={`h-full w-[50%] aspect-square bg-cover bg-center`}
+        style={{
+          backgroundImage: `url(${databaseURL('website', 'images/hero.png')})`,
+        }}
+      />
     </div>
   );
 }
