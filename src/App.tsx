@@ -21,143 +21,148 @@ import CompanyIdeasListPage from './pages/company-ideas/CompanyIdeasListPage';
 import CompanyIdeasDetailPage from './pages/company-ideas/CompanyIdeasDetailPage';
 import AndroidAppsListPage from './pages/android-apps/AndroidAppsListPage';
 import AndroidAppsDetailPage from './pages/android-apps/AndroidAppsDetailPage';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App bg-[hsl(0,0%,95%)] overflow-x-hidden">
-      <ConfigProvider
-        theme={{
-          token: {
-            // colorPrimary: '#f2f2f2',
-            colorPrimary: '##453f3c',
-            fontSize: 16,
-            colorTextSecondary: 'black',
-            colorFillTertiary: '#453f3c',
-            // colorFillSecondary: 'black',
-            // colorTextSecondary: 'black',
-            // colorBgContainer: '#f2f2f2',
-          },
-        }}
-      >
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <MainLayout>
-                <Homepage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation"
-            element={
-              <MainLayout>
-                <CreationPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <MainLayout>
-                <AboutMePage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/blender"
-            element={
-              <MainLayout theme="DARK">
-                <BlenderCreationPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/blender/assets"
-            element={
-              <MainLayout>
-                <AssetsSearch />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/blender/assets/:id"
-            element={
-              <MainLayout>
-                <AssetDetail />
-              </MainLayout>
-            }
-          />
+    <QueryClientProvider client={queryClient}>
+      <div className="App bg-[hsl(0,0%,95%)] overflow-x-hidden">
+        <ConfigProvider
+          theme={{
+            token: {
+              // colorPrimary: '#f2f2f2',
+              colorPrimary: '##453f3c',
+              fontSize: 16,
+              colorTextSecondary: 'black',
+              colorFillTertiary: '#453f3c',
+              // colorFillSecondary: 'black',
+              // colorTextSecondary: 'black',
+              // colorBgContainer: '#f2f2f2',
+            },
+          }}
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <MainLayout>
+                  <Homepage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation"
+              element={
+                <MainLayout>
+                  <CreationPage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <MainLayout>
+                  <AboutMePage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/blender"
+              element={
+                <MainLayout theme="DARK">
+                  <BlenderCreationPage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/blender/assets"
+              element={
+                <MainLayout>
+                  <AssetsSearch />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/blender/assets/:id"
+              element={
+                <MainLayout>
+                  <AssetDetail />
+                </MainLayout>
+              }
+            />
 
-          <Route
-            path="/creation/blender/render"
-            element={
-              <MainLayout theme="DARK">
-                <RenderList />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/blender/render/:id"
-            element={
-              <MainLayout>
-                <RenderDetail />
-              </MainLayout>
-            }
-          />
+            <Route
+              path="/creation/blender/render"
+              element={
+                <MainLayout theme="DARK">
+                  <RenderList />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/blender/render/:id"
+              element={
+                <MainLayout>
+                  <RenderDetail />
+                </MainLayout>
+              }
+            />
 
-          <Route
-            path="/creation/programming"
-            element={
-              <MainLayout>
-                <ProgrammingLandingPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/game"
-            element={
-              <MainLayout theme="DARK">
-                <GameCreationPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/company-ideas"
-            element={
-              <MainLayout>
-                <CompanyIdeasListPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/company-ideas/:id"
-            element={
-              <MainLayout>
-                <CompanyIdeasDetailPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/android-apps"
-            element={
-              <MainLayout>
-                <AndroidAppsListPage />
-              </MainLayout>
-            }
-          />
-          <Route
-            path="/creation/android-apps/:id"
-            element={
-              <MainLayout>
-                <AndroidAppsDetailPage />
-              </MainLayout>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </ConfigProvider>
-    </div>
+            <Route
+              path="/creation/programming"
+              element={
+                <MainLayout>
+                  <ProgrammingLandingPage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/game"
+              element={
+                <MainLayout theme="DARK">
+                  <GameCreationPage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/company-ideas"
+              element={
+                <MainLayout>
+                  <CompanyIdeasListPage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/company-ideas/:id"
+              element={
+                <MainLayout>
+                  <CompanyIdeasDetailPage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/android-apps"
+              element={
+                <MainLayout>
+                  <AndroidAppsListPage />
+                </MainLayout>
+              }
+            />
+            <Route
+              path="/creation/android-apps/:id"
+              element={
+                <MainLayout>
+                  <AndroidAppsDetailPage />
+                </MainLayout>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ConfigProvider>
+      </div>
+    </QueryClientProvider>
   );
 }
 
