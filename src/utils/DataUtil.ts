@@ -1,9 +1,9 @@
 export type SortDirectionType = 'ASC' | 'DESC';
 
 export class DataUtil {
-  static searchData(data: any[], keywords: string): any[] {
+  static searchData<T>(data: T[], keywords: string, searchKey: string): T[] {
     return data.filter((item: any) =>
-      item.name.toLowerCase().includes(keywords.toLowerCase()),
+      item[searchKey].toLowerCase().includes(keywords.toLowerCase()),
     );
   }
 
