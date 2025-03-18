@@ -59,9 +59,10 @@ export default function AssetsSearch() {
   }, []);
 
   useEffect(() => {
-    const searchedData = DataUtil.searchData(
+    const searchedData = DataUtil.searchData<any>(
       assets,
       searchParams.get('search') ? (searchParams.get('search') as string) : '',
+      'name',
     );
 
     const queryCurrentPage = searchParams.get('page') as string;
