@@ -14,7 +14,7 @@ export default function Hero() {
   });
   return (
     <div
-      className="flex"
+      className={`flex ${isDesktopOrLaptop ? 'flex-row' : 'flex-col-reverse'}`}
       style={{
         width: '100%',
         height: '100svh',
@@ -22,7 +22,7 @@ export default function Hero() {
       }}
     >
       <Flex
-        className="w-[50%] h-full text-left pt-32"
+        className={`${isDesktopOrLaptop ? 'w-[50%] pt-32' : 'w-[100%] pt-4'} h-full text-left`}
         vertical
         gap={0}
         justify="space-between"
@@ -95,7 +95,7 @@ export default function Hero() {
         </Flex>
       </Flex>
       <div
-        className={`h-full w-[50%] aspect-square bg-cover bg-center`}
+        className={`h-full ${isDesktopOrLaptop ? 'w-[50%]' : 'w-[100%]'} aspect-square bg-cover bg-center`}
         style={{
           backgroundImage: `url(${databaseURL('website', 'images/hero.png')})`,
         }}
