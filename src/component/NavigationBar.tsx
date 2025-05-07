@@ -165,7 +165,10 @@ export default function NavigationBar(props: NavigationBarProps) {
                     type="text"
                     ghost
                     className={props.theme === 'DARK' ? 'text-white' : ''}
-                    onClick={() => navigate('/creation')}
+                    onClick={() => {
+                      onClose();
+                      navigate('/creation');
+                    }}
                   >
                     Creation
                   </Button>
@@ -173,7 +176,10 @@ export default function NavigationBar(props: NavigationBarProps) {
                     type="text"
                     ghost
                     className={props.theme === 'DARK' ? 'text-white' : ''}
-                    onClick={() => navigate('/blogs')}
+                    onClick={() => {
+                      onClose();
+                      navigate('/blogs');
+                    }}
                   >
                     Blogs
                   </Button>
@@ -181,7 +187,10 @@ export default function NavigationBar(props: NavigationBarProps) {
                     type="text"
                     ghost
                     className={props.theme === 'DARK' ? 'text-white' : ''}
-                    onClick={() => navigate('/contact')}
+                    onClick={() => {
+                      onClose();
+                      navigate('/contact');
+                    }}
                   >
                     Contact
                   </Button>
@@ -189,7 +198,10 @@ export default function NavigationBar(props: NavigationBarProps) {
                     type="text"
                     ghost
                     className={props.theme === 'DARK' ? 'text-white' : ''}
-                    onClick={() => navigate('/about')}
+                    onClick={() => {
+                      onClose();
+                      navigate('/about');
+                    }}
                   >
                     About
                   </Button>
